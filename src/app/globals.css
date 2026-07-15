@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-display: var(--font-oswald), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* Vert sapin — couleur principale du logo */
+  --color-pine-50: #eff6f3;
+  --color-pine-100: #dcebe4;
+  --color-pine-200: #b9d6ca;
+  --color-pine-300: #8db9a9;
+  --color-pine-400: #5f9683;
+  --color-pine-500: #3f7a67;
+  --color-pine-600: #2c6152;
+  --color-pine-700: #224e42;
+  --color-pine-800: #1a3f36;
+  --color-pine-900: #12312a;
+  --color-pine-950: #0a211c;
+
+  /* Jaune or — couleur secondaire du logo */
+  --color-gold-50: #fdf9e9;
+  --color-gold-100: #faf0c5;
+  --color-gold-200: #f6df8d;
+  --color-gold-300: #f1c94b;
+  --color-gold-400: #f0bd22;
+  --color-gold-500: #edb111;
+  --color-gold-600: #c78c0b;
+  --color-gold-700: #9f660d;
+  --color-gold-800: #835112;
+  --color-gold-900: #704215;
+
+  /* Crème — fonds clairs */
+  --color-cream-50: #fbf9f3;
+  --color-cream-100: #f4efe1;
+  --color-cream-200: #e9dfc5;
+
+  /* Terre battue — clin d'œil au pays des potiers */
+  --color-clay-500: #c05a33;
+  --color-clay-600: #a4492a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream-50);
+  color: var(--color-pine-950);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold-400);
+  color: var(--color-pine-950);
+}
+
+/* ---------- Typographie ---------- */
+
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  font-weight: 600;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.kicker::before {
+  content: "";
+  width: 2.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+/* ---------- Boutons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn-gold {
+  background: var(--color-gold-500);
+  color: var(--color-pine-950);
+  box-shadow: 0 10px 26px -10px rgba(237, 177, 17, 0.6);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-400);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -12px rgba(237, 177, 17, 0.75);
+}
+
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-pine {
+  background: var(--color-pine-800);
+  color: #fff;
+  box-shadow: 0 10px 26px -12px rgba(20, 60, 51, 0.6);
+}
+
+.btn-pine:hover {
+  background: var(--color-pine-700);
+  transform: translateY(-2px);
+}
+
+.btn-outline-pine {
+  border: 1.5px solid var(--color-pine-800);
+  color: var(--color-pine-800);
+  background: transparent;
+}
+
+.btn-outline-pine:hover {
+  background: var(--color-pine-800);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ---------- Cartes ---------- */
+
+.card-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -22px rgba(10, 33, 28, 0.28);
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+  width: max-content;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.animate-float {
+  animation: float-y 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .animate-float {
+    animation: none;
+  }
+}

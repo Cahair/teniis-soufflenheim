@@ -1,0 +1,237 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import PageHero from "@/components/PageHero";
+import Reveal from "@/components/Reveal";
+import SectionHeader from "@/components/SectionHeader";
+import CtaBand from "@/components/home/CtaBand";
+import { committee, facilities, site, timeline } from "@/lib/data";
+import {
+  clubHouse,
+  courtsExterieurs,
+  logoHistorique,
+  padelCourt,
+  pickleballJeunes,
+} from "@/lib/images";
+
+export const metadata: Metadata = {
+  title: "Le club",
+  description:
+    "Depuis 1979, le Tennis Padel Club Soufflenheim fait vivre le sport de raquette au pays des potiers : histoire, comité, installations.",
+};
+
+const committeeIcons: Record<string, React.ReactNode> = {
+  crown: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m3 8 4 4 5-6 5 6 4-4v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z" />
+    </svg>
+  ),
+  pen: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
+  ),
+  coins: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="8" cy="8" r="6" />
+      <path d="M18.1 9.9A6 6 0 1 1 9.9 18.1" />
+    </svg>
+  ),
+  spark: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3v3m6.4-.4-2.2 2.2M21 12h-3m.4 6.4-2.2-2.2M12 18v3m-6.4-.4 2.2-2.2M3 12h3m-.4-6.4 2.2 2.2" />
+    </svg>
+  ),
+};
+
+const facilityImages = [courtsExterieurs, pickleballJeunes, padelCourt, clubHouse];
+
+export default function LeClubPage() {
+  return (
+    <>
+      <PageHero
+        kicker="Le club"
+        title="Une histoire de famille depuis 1979"
+        text="Du premier échange rue de Koenigsbruck à la piste de padel dernière génération : presque un demi-siècle de passion, porté par des bénévoles qui ne lâchent rien."
+      />
+
+      {/* Histoire / timeline */}
+      <section className="bg-cream-50 py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-16 lg:grid-cols-[1fr_0.8fr]">
+            <div>
+              <Reveal>
+                <SectionHeader
+                  align="left"
+                  kicker="Notre histoire"
+                  title="Presque 50 ans de petites et grandes victoires"
+                />
+              </Reveal>
+              <div className="mt-12 space-y-0">
+                {timeline.map((step, i) => (
+                  <Reveal key={step.year} delay={i * 80}>
+                    <div className="relative flex gap-6 pb-10 last:pb-0">
+                      {i < timeline.length - 1 ? (
+                        <span className="absolute left-[2.15rem] top-16 bottom-0 w-0.5 bg-pine-200" />
+                      ) : null}
+                      <span className="display z-10 flex h-[4.3rem] w-[4.3rem] shrink-0 items-center justify-center rounded-2xl bg-pine-800 text-center text-sm leading-tight text-gold-400 shadow-lg shadow-pine-800/25">
+                        {step.year}
+                      </span>
+                      <div className="pt-2">
+                        <h3 className="text-lg font-bold text-pine-950">{step.title}</h3>
+                        <p className="mt-2 max-w-xl text-sm leading-relaxed text-pine-950/65">
+                          {step.text}
+                        </p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-8">
+              <Reveal direction="right">
+                <figure className="overflow-hidden rounded-3xl border border-pine-100 bg-white p-4 shadow-xl shadow-pine-950/5">
+                  <Image
+                    src={logoHistorique}
+                    alt="L'ancien logo du Tennis Club Soufflenheim, sur terre battue"
+                    placeholder="blur"
+                    sizes="(max-width: 1024px) 90vw, 35vw"
+                    className="h-auto w-full rounded-2xl"
+                  />
+                  <figcaption className="px-2 pb-1 pt-4 text-xs text-pine-950/50">
+                    Souvenir : la bannière historique du Tennis Club, avant
+                    l&rsquo;arrivée du padel.
+                  </figcaption>
+                </figure>
+              </Reveal>
+
+              {/* Mot du président */}
+              <Reveal direction="right" delay={120}>
+                <div className="relative overflow-hidden rounded-3xl bg-pine-800 p-8 text-white shadow-xl shadow-pine-800/25 sm:p-10">
+                  <span className="display absolute -top-4 right-6 text-[7rem] leading-none text-white/10">
+                    &ldquo;
+                  </span>
+                  <span className="kicker text-gold-400">Le mot du président</span>
+                  <blockquote className="relative mt-5 text-lg leading-relaxed text-white/90">
+                    Créativité, flexibilité et gestion rigoureuse : c&rsquo;est notre
+                    cap pour faire prospérer le club malgré un contexte
+                    économique incertain. Le padel, le pickleball, le projet
+                    d&rsquo;extension… on avance, ensemble, sans jamais perdre
+                    l&rsquo;esprit du club.
+                  </blockquote>
+                  <div className="mt-7 flex items-center gap-4">
+                    <span className="display flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-xl text-pine-950">
+                      {site.president.charAt(0)}
+                    </span>
+                    <div>
+                      <p className="font-bold">{site.president}</p>
+                      <p className="text-xs text-white/60">
+                        Président ·{" "}
+                        <a href="tel:+33610146039" className="hover:text-gold-300">
+                          {site.phonePresident}
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Comité */}
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeader
+              kicker="Le comité"
+              title="Une équipe de bénévoles engagés"
+              text="Derrière chaque tournoi, chaque soirée et chaque court entretenu, il y a des mains bénévoles. Envie de rejoindre l'aventure ? Parlez-en au club house."
+            />
+          </Reveal>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {committee.map((member, i) => (
+              <Reveal key={member.role} delay={i * 100} className="h-full">
+                <div className="card-lift flex h-full flex-col items-center rounded-3xl border border-pine-100 bg-cream-50 p-8 text-center">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-pine-800 text-gold-400">
+                    {committeeIcons[member.icon]}
+                  </span>
+                  <h3 className="display mt-5 text-xl text-pine-950">{member.role}</h3>
+                  <p className="mt-1.5 text-sm font-semibold text-pine-950/75">
+                    {member.name}
+                  </p>
+                  <p className="mt-2 text-xs text-pine-950/50">{member.contact}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Installations */}
+      <section id="installations" className="scroll-mt-24 bg-cream-50 py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeader
+              kicker="Les installations"
+              title="Tout pour jouer, tout pour rester"
+              text="Courts, piste de padel, club house avec cuisine, pétanque et espace vert : le TPCS est pensé pour les sportifs comme pour les supporters."
+            />
+          </Reveal>
+          <div className="mt-14 grid gap-8 sm:grid-cols-2">
+            {facilities.map((facility, i) => (
+              <Reveal key={facility.title} delay={i * 100} className="h-full">
+                <article className="card-lift group flex h-full flex-col overflow-hidden rounded-3xl border border-pine-100 bg-white">
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={facilityImages[i]}
+                      alt={facility.title}
+                      fill
+                      placeholder="blur"
+                      sizes="(max-width: 640px) 90vw, 45vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-gold-500 px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-pine-950 shadow-lg">
+                      {facility.tag}
+                    </span>
+                  </div>
+                  <div className="p-7">
+                    <h3 className="display text-2xl text-pine-950">{facility.title}</h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-pine-950/65">
+                      {facility.detail}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={150}>
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+              {["Terrain de pétanque", "Espace vert", "Parking gratuit illimité", "Terrasse ombragée", "Cuisine équipée"].map((extra) => (
+                <span
+                  key={extra}
+                  className="rounded-full border border-pine-200 bg-white px-5 py-2.5 text-sm font-semibold text-pine-800"
+                >
+                  {extra}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="mt-14 text-center">
+              <Link href="/tarifs" className="btn btn-pine">
+                Voir les formules d&rsquo;adhésion
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <CtaBand />
+    </>
+  );
+}
