@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoMark from "./LogoMark";
+import SocialLinks from "./SocialLinks";
 import { navLinks, site } from "@/lib/data";
 
 export default function Navbar() {
@@ -122,6 +123,9 @@ export default function Navbar() {
           </Link>
         </nav>
         <div className="px-8 pb-10 text-sm text-white/50">
+          <div className="mb-5">
+            <SocialLinks />
+          </div>
           <p>{site.address.street} — {site.address.city}</p>
           <p className="mt-1">{site.phoneClub}</p>
         </div>

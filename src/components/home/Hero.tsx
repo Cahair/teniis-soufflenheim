@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CourtLines from "@/components/CourtLines";
 import Reveal from "@/components/Reveal";
+import SocialLinks from "@/components/SocialLinks";
 import { padelCourt, terrasseClub } from "@/lib/images";
 
 export default function Hero() {
@@ -97,6 +98,16 @@ export default function Hero() {
                 </svg>
                 Ouvert aux non-licenciés
               </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={500}>
+            <div className="mt-8 flex items-center gap-4 sm:mt-10">
+              <span className="text-[0.65rem] uppercase tracking-[0.3em] text-white/40">
+                Suivez-nous
+              </span>
+              <span className="h-px w-8 bg-white/15" />
+              <SocialLinks />
             </div>
           </Reveal>
         </div>

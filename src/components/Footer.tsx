@@ -2,20 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { logo } from "@/lib/images";
 import { navLinks, site } from "@/lib/data";
-
-function SocialIcon({ path, label }: { path: string; label: string }) {
-  return (
-    <a
-      href="#"
-      aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-gold-400 hover:text-gold-400"
-    >
-      <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="currentColor">
-        <path d={path} />
-      </svg>
-    </a>
-  );
-}
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   return (
@@ -32,15 +19,8 @@ export default function Footer() {
               Tennis, padel et pickleball au cœur du pays des potiers, depuis
               1979. Un club de village, une ambiance de famille.
             </p>
-            <div className="mt-6 flex gap-3">
-              <SocialIcon
-                label="Facebook"
-                path="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"
-              />
-              <SocialIcon
-                label="Instagram"
-                path="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.9.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.3.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.9-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.3.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.3-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.9.4-2.3.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.3-.4 1.2-.1 1.6-.1 4.8-.1Zm0 2A8 8 0 1 0 12 20 8 8 0 0 0 12 4.2Zm0 3.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6ZM17.8 5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"
-              />
+            <div className="mt-6">
+              <SocialLinks />
             </div>
           </div>
 

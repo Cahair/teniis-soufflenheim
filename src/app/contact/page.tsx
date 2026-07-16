@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
 import { faqs, site } from "@/lib/data";
+import { socials } from "@/lib/socials";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -114,6 +115,39 @@ export default function ContactPage() {
                     </div>
                   </Reveal>
                 ))}
+
+                {/* Réseaux sociaux */}
+                <Reveal delay={contactCards.length * 80} className="sm:col-span-2">
+                  <div className="card-lift rounded-3xl border border-pine-100 bg-white p-6">
+                    <h3 className="font-bold text-pine-950">
+                      Suivez la vie du club
+                    </h3>
+                    <p className="mt-1.5 text-sm text-pine-950/65">
+                      Résultats, événements, coulisses : le TPCS est aussi sur
+                      les réseaux.
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {socials.map((social) => (
+                        <a
+                          key={social.label}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-pine-100 px-4 py-2 text-sm font-medium text-pine-950/80 transition-colors hover:border-gold-400 hover:text-clay-500"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            className="h-4 w-4"
+                            fill="currentColor"
+                          >
+                            <path d={social.path} />
+                          </svg>
+                          {social.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </Reveal>
               </div>
             </div>
 
