@@ -60,10 +60,13 @@ export default function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out will-change-transform ${
+      className={`transition-all duration-700 ease-out ${
         visible
-          ? "translate-x-0 translate-y-0 scale-100 opacity-100"
-          : `opacity-0 ${hiddenClass[direction]}`
+          ? "opacity-100"
+          : // will-change et transform uniquement avant la révélation : un
+            // ancêtre avec transform devient le containing block des
+            // descendants position:fixed (lightbox, menus plein écran…)
+            `opacity-0 will-change-transform ${hiddenClass[direction]}`
       } ${className}`}
     >
       {children}

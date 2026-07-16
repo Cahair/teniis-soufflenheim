@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export function BallMark({ className = "" }: { className?: string }) {
   return (
@@ -27,6 +30,27 @@ export default function LogoMark({
 }: {
   onNavigate?: () => void;
 }) {
+  const ballRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (ballRef.current) {
+        ballRef.current.style.transform = `rotate(${window.scrollY * 0.35}deg)`;
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <Link
       href="/"
@@ -34,7 +58,11 @@ export default function LogoMark({
       className="group flex items-center gap-3"
       aria-label="Tennis Padel Club Soufflenheim — accueil"
     >
-      <BallMark className="h-9 w-9 drop-shadow-md transition-transform duration-300 group-hover:rotate-12" />
+      {/* Rotation pilotée par le scroll appliquée au wrapper, pour ne pas
+          entrer en conflit avec le transform du hover sur le svg */}
+      <span ref={ballRef} className="inline-flex will-change-transform">
+        <BallMark className="h-9 w-9 drop-shadow-md transition-transform duration-300 group-hover:rotate-12" />
+      </span>
       <span className="flex flex-col leading-none">
         <span className="display text-lg tracking-wide text-white">
           Tennis <span className="text-gold-400">Padel</span>
