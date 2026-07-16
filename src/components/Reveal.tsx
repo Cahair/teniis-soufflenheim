@@ -36,6 +36,13 @@ export default function Reveal({
       setVisible(true);
       return;
     }
+    // Un seuil fixe de 12 % ne peut jamais être atteint quand l'élément
+    // est plus haut que le viewport (ex : la grille complète de la galerie) —
+    // on le plafonne pour que la révélation reste déclenchable.
+    const threshold = Math.min(
+      0.12,
+      (window.innerHeight * 0.3) / Math.max(el.offsetHeight, 1)
+    );
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,7 +50,7 @@ export default function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold, rootMargin: "0px 0px -40px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();

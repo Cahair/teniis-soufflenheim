@@ -4,6 +4,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import type { GalleryItem } from "@/lib/data";
 
+/* Nombre de photos affichées initialement et ajoutées à chaque
+   clic sur « Afficher plus » — multiple de 2 et 3 pour remplir
+   les colonnes quel que soit l'écran. */
+const PAGE_SIZE = 12;
+
 export default function GalleryGrid({
   items,
   withFilter = false,
@@ -16,6 +21,7 @@ export default function GalleryGrid({
     [items]
   );
   const [category, setCategory] = useState("Tous");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   const filtered = useMemo(
@@ -25,18 +31,22 @@ export default function GalleryGrid({
         : items.filter((i) => i.category === category),
     [items, category]
   );
+  const visible = useMemo(
+    () => filtered.slice(0, visibleCount),
+    [filtered, visibleCount]
+  );
 
   const close = useCallback(() => setLightbox(null), []);
   const prev = useCallback(
     () =>
       setLightbox((v) =>
-        v === null ? v : (v - 1 + filtered.length) % filtered.length
+        v === null ? v : (v - 1 + visible.length) % visible.length
       ),
-    [filtered.length]
+    [visible.length]
   );
   const next = useCallback(
-    () => setLightbox((v) => (v === null ? v : (v + 1) % filtered.length)),
-    [filtered.length]
+    () => setLightbox((v) => (v === null ? v : (v + 1) % visible.length)),
+    [visible.length]
   );
 
   useEffect(() => {
@@ -64,6 +74,7 @@ export default function GalleryGrid({
               type="button"
               onClick={() => {
                 setCategory(cat);
+                setVisibleCount(PAGE_SIZE);
                 setLightbox(null);
               }}
               className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
@@ -79,7 +90,7 @@ export default function GalleryGrid({
       ) : null}
 
       <div className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
-        {filtered.map((item, i) => (
+        {visible.map((item, i) => (
           <button
             key={item.alt}
             type="button"
@@ -106,12 +117,25 @@ export default function GalleryGrid({
         ))}
       </div>
 
-      {lightbox !== null && filtered[lightbox] ? (
+      {visible.length < filtered.length ? (
+        <div className="mt-10 text-center">
+          <button
+            type="button"
+            onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+            className="btn btn-pine"
+          >
+            Afficher plus de photos ({filtered.length - visible.length}{" "}
+            restantes)
+          </button>
+        </div>
+      ) : null}
+
+      {lightbox !== null && visible[lightbox] ? (
         <div
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-pine-950/95 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          aria-label={filtered[lightbox].caption}
+          aria-label={visible[lightbox].caption}
           onClick={close}
         >
           <button
@@ -130,8 +154,8 @@ export default function GalleryGrid({
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={filtered[lightbox].src}
-              alt={filtered[lightbox].alt}
+              src={visible[lightbox].src}
+              alt={visible[lightbox].alt}
               className="max-h-[78vh] w-auto rounded-xl object-contain shadow-2xl"
             />
           </div>
@@ -151,9 +175,9 @@ export default function GalleryGrid({
               </svg>
             </button>
             <div className="text-center">
-              <p className="text-sm font-semibold">{filtered[lightbox].caption}</p>
+              <p className="text-sm font-semibold">{visible[lightbox].caption}</p>
               <p className="mt-1 text-xs text-white/50">
-                {lightbox + 1} / {filtered.length}
+                {lightbox + 1} / {visible.length}
               </p>
             </div>
             <button

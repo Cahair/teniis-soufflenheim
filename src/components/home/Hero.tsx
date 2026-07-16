@@ -6,7 +6,7 @@ import { padelCourt, terrasseClub } from "@/lib/images";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-pine-950 pb-24 pt-36 lg:pt-40">
+    <section className="hero relative overflow-hidden bg-pine-950 pb-24 pt-28 sm:pt-36 lg:pt-40">
       {/* Photo de fond — mobile & tablette */}
       <div className="absolute inset-0 lg:hidden">
         <Image
@@ -35,7 +35,7 @@ export default function Hero() {
         {/* Colonne texte */}
         <div>
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-300 backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-300 backdrop-blur sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.18em]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-400" />
@@ -45,7 +45,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="display mt-6 text-5xl text-white sm:text-7xl lg:text-[5.2rem]">
+            <h1 className="hero-title display mt-5 text-[2.6rem] text-white sm:mt-6 sm:text-7xl lg:text-[5.2rem]">
               Tennis, padel
               <br />
               <span className="text-gold-400">&amp; pickleball</span>
@@ -55,7 +55,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={200}>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70 sm:mt-6 sm:text-lg">
               Au cœur du pays des potiers, le TPCS vous accueille sur ses courts
               de tennis, sa piste de padel dernière génération et ses terrains
               de découverte. Réservez en ligne, venez jouer, restez pour la
@@ -64,7 +64,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Link href="/#reservation" className="btn btn-gold">
                 Réserver un court
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -78,7 +78,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={400}>
-            <div className="mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm text-white/60">
+            <div className="hero-trust mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/60 sm:mt-12 sm:gap-y-4">
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 24 24" className="h-5 w-5 text-gold-400" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m5 13 4 4L19 7" />
@@ -104,7 +104,7 @@ export default function Hero() {
         {/* Colonne image — desktop uniquement (la photo passe en fond sur mobile) */}
         <Reveal direction="zoom" delay={200} className="relative hidden w-full lg:block">
           <div className="absolute -inset-3 translate-x-5 translate-y-5 rounded-t-[10rem] rounded-b-[2.5rem] border-2 border-gold-500/40" />
-          <div className="relative aspect-[3/4] overflow-hidden rounded-t-[10rem] rounded-b-[2.5rem] shadow-2xl shadow-pine-950/60 ring-1 ring-white/15">
+          <div className="hero-media relative aspect-[3/4] overflow-hidden rounded-t-[10rem] rounded-b-[2.5rem] shadow-2xl shadow-pine-950/60 ring-1 ring-white/15">
             <Image
               src={padelCourt}
               alt="La piste de padel SLAMCOURT du club sous le soleil"
@@ -149,7 +149,7 @@ export default function Hero() {
       <a
         href="#stats"
         aria-label="Faire défiler vers le contenu"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/50 transition-colors hover:text-gold-400 lg:flex"
+        className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/60 transition-colors hover:text-gold-400 lg:bottom-6 lg:text-white/50"
       >
         <span className="text-[0.65rem] uppercase tracking-[0.3em]">Découvrir</span>
         <svg viewBox="0 0 24 24" className="h-5 w-5 animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

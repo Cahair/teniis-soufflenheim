@@ -30,6 +30,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
@@ -76,13 +77,15 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
+    </header>
 
-      {/* Menu mobile plein écran */}
-      <div
-        className={`fixed inset-0 z-50 flex flex-col bg-pine-950 transition-all duration-300 lg:hidden ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      >
+    {/* Menu mobile plein écran — hors du <header> : son backdrop-blur
+        ferait sinon office de containing block pour ce position:fixed */}
+    <div
+      className={`fixed inset-0 z-50 flex flex-col bg-pine-950 transition-all duration-300 lg:hidden ${
+        open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+      }`}
+    >
         <div className="flex h-20 items-center justify-between px-4 sm:px-6">
           <LogoMark onNavigate={() => setOpen(false)} />
           <button
@@ -122,7 +125,8 @@ export default function Navbar() {
           <p>{site.address.street} — {site.address.city}</p>
           <p className="mt-1">{site.phoneClub}</p>
         </div>
-      </div>
-    </header>
+    </div>
+    </>
   );
 }
+

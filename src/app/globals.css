@@ -155,6 +155,30 @@ body {
   transform: translateY(-2px);
 }
 
+/* ---------- Hero compact ----------
+   Écrans larges mais peu hauts (portables 1366×768, 1536×864…) :
+   on resserre le hero pour que les CTA restent au-dessus du pli,
+   sans toucher au rendu des grands moniteurs ni du mobile. */
+
+@media (min-width: 64rem) and (max-height: 53rem) {
+  .hero {
+    padding-top: 7.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .hero .hero-title {
+    font-size: 3.9rem;
+  }
+
+  .hero .hero-trust {
+    margin-top: 2rem;
+  }
+
+  .hero .hero-media {
+    max-height: calc(100svh - 14rem);
+  }
+}
+
 /* ---------- Carrousels ---------- */
 
 .no-scrollbar {
