@@ -3,7 +3,7 @@ import Link from "next/link";
 import GalleryGrid from "@/components/GalleryGrid";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
-import { gallery } from "@/lib/data";
+import { galleryComplete } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Galerie photos",
@@ -17,13 +17,13 @@ export default function GaleriePage() {
       <PageHero
         kicker="Galerie"
         title="Le club en images"
-        text="Piste de padel flambant neuve, courts au cœur du village, terrasse au soleil et fêtes mémorables : bienvenue chez nous."
+        text="Piste de padel flambant neuve, courts au cœur du village, terrasse au soleil, fêtes mémorables — et plus de 45 ans d'archives : bienvenue chez nous."
       />
 
       <section className="bg-cream-50 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <GalleryGrid items={gallery} withFilter />
+            <GalleryGrid items={galleryComplete} withFilter />
           </Reveal>
 
           <Reveal delay={150}>

@@ -7,15 +7,29 @@ import { padelCourt, terrasseClub } from "@/lib/images";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-pine-950 pb-24 pt-36 lg:pt-40">
+      {/* Photo de fond — mobile & tablette */}
+      <div className="absolute inset-0 lg:hidden">
+        <Image
+          src={padelCourt}
+          alt=""
+          fill
+          priority
+          placeholder="blur"
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-pine-950/85 via-pine-950/70 to-pine-950" />
+      </div>
+
       {/* Décors de fond */}
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
         style={{
           background:
             "radial-gradient(70rem 40rem at 80% -20%, rgba(237,177,17,0.16), transparent 60%), radial-gradient(50rem 30rem at -10% 110%, rgba(63,122,103,0.35), transparent 60%)",
         }}
       />
-      <CourtLines className="absolute -bottom-32 -left-40 h-[36rem] w-auto -rotate-12 text-white/[0.045]" />
+      <CourtLines className="absolute -bottom-32 -left-40 hidden h-[36rem] w-auto -rotate-12 text-white/[0.045] lg:block" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         {/* Colonne texte */}
@@ -31,7 +45,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h1 className="display mt-6 text-6xl text-white sm:text-7xl lg:text-[5.2rem]">
+            <h1 className="display mt-6 text-5xl text-white sm:text-7xl lg:text-[5.2rem]">
               Tennis, padel
               <br />
               <span className="text-gold-400">&amp; pickleball</span>
@@ -50,7 +64,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
               <Link href="/#reservation" className="btn btn-gold">
                 Réserver un court
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -87,8 +101,8 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Colonne image */}
-        <Reveal direction="zoom" delay={200} className="relative mx-auto w-full max-w-md lg:max-w-none">
+        {/* Colonne image — desktop uniquement (la photo passe en fond sur mobile) */}
+        <Reveal direction="zoom" delay={200} className="relative hidden w-full lg:block">
           <div className="absolute -inset-3 translate-x-5 translate-y-5 rounded-t-[10rem] rounded-b-[2.5rem] border-2 border-gold-500/40" />
           <div className="relative aspect-[3/4] overflow-hidden rounded-t-[10rem] rounded-b-[2.5rem] shadow-2xl shadow-pine-950/60 ring-1 ring-white/15">
             <Image

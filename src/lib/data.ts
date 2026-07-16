@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import { histoireChapitres } from "./histoire";
 import {
   padelCourt,
   terrasseClub,
@@ -45,6 +46,7 @@ export const navLinks = [
   { label: "Tarifs", href: "/tarifs" },
   { label: "Actualités", href: "/actualites" },
   { label: "Galerie", href: "/galerie" },
+  { label: "Sponsors", href: "/sponsors" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -216,100 +218,154 @@ export type PriceCard = {
 
 export const memberships: PriceCard[] = [
   {
-    name: "Jeune (-18 ans)",
-    price: "75 €",
+    name: "Tennis Adulte",
+    price: "133 €",
     period: "/ an",
     features: [
+      "Licence FFT : 33 €",
+      "Droit de jeu & dons : 100 € (50 € + 50 €)",
       "Accès aux courts extérieurs & couvert",
-      "Licence FFT incluse",
-      "Tarif préférentiel padel",
-      "Événements du club",
+      "Éclairage compris",
     ],
   },
   {
-    name: "Adulte",
-    price: "135 €",
-    period: "/ an",
-    featured: true,
-    features: [
-      "Accès aux courts extérieurs & couvert",
-      "Licence FFT incluse",
-      "Tarif préférentiel padel",
-      "Réservation en ligne Ten'up",
-      "Événements du club",
-    ],
-  },
-  {
-    name: "Couple",
-    price: "230 €",
+    name: "Tennis Couple",
+    price: "226 €",
     period: "/ an",
     features: [
       "2 adhésions adultes",
-      "Licences FFT incluses",
-      "Tarif préférentiel padel",
-      "Événements du club",
+      "Licences FFT : 66 €",
+      "Droit de jeu & dons : 160 € (80 € + 80 €)",
+      "Accès aux courts extérieurs & couvert",
     ],
   },
   {
-    name: "Famille",
-    price: "280 €",
+    name: "Combiné Tennis + Padel",
+    price: "163 €",
+    period: "/ an",
+    featured: true,
+    features: [
+      "Licence multi-raquettes : 33 €",
+      "Droit de jeu & dons : 130 € (65 € + 65 €)",
+      "Tennis & padel tous les jours",
+      "Éclairage compris",
+    ],
+  },
+  {
+    name: "Padel Adulte",
+    price: "156 €",
     period: "/ an",
     features: [
-      "Parents + enfants mineurs",
-      "Licences FFT incluses",
-      "Tarif préférentiel padel",
-      "Événements du club",
+      "Licence FFT : 26 €",
+      "Droit de jeu & dons : 130 € (65 € + 65 €)",
+      "Accès à la piste de padel",
+      "Éclairage compris",
+    ],
+  },
+  {
+    name: "Padel Couple",
+    price: "260 €",
+    period: "/ an",
+    features: [
+      "2 adhésions adultes",
+      "Licences FFT : 52 €",
+      "Droit de jeu & dons : 208 € (104 € + 104 €)",
+      "Accès à la piste de padel",
+    ],
+  },
+  {
+    name: "Padel non licencié au club",
+    price: "180 €",
+    period: "/ an",
+    features: [
+      "Sans licence au club",
+      "Droit de jeu : 130 € + 50 €",
+      "Accès à la piste de padel",
+    ],
+  },
+  {
+    name: "Jeunes 7 à -18 ans",
+    price: "82 €",
+    period: "/ an",
+    features: [
+      "Tennis + padel multi-raquettes",
+      "Licence FFT : 23 €",
+      "Droit de jeu & dons : 60 € (30 € + 30 €)",
+      "Certificat médical obligatoire",
+    ],
+  },
+  {
+    name: "Familles 2 ou 3 enfants",
+    price: "− 16 €",
+    period: "/ enfant / an",
+    features: [
+      "Réduction sur la formule Jeunes",
+      "Enfants de 7 à -18 ans",
+      "Soit 66 € par enfant",
     ],
   },
 ];
 
-export const hourlyRates = [
+/* La cotisation habituelle est partagée en trois */
+export const cotisationParts = [
   {
-    name: "Padel — licenciés",
-    price: "12 €",
-    unit: "/ heure / piste",
-    note: "Réservation via Ten'up",
+    name: "La licence",
+    text: "Due intégralement à la Fédération Française de Tennis. L'adhésion à la FFT est obligatoire pour pratiquer le tennis et le padel.",
   },
   {
-    name: "Padel — non-licenciés",
-    price: "24 €",
-    unit: "/ 90 min / piste",
-    note: "Réservation via Anybuddy",
+    name: "La part abonnement",
+    text: "Dédiée à la pratique du tennis et du padel : entretien des courts, éclairage des courts intérieurs et de la piste de padel compris.",
   },
   {
-    name: "Carte padel 10 heures",
-    price: "100 €",
-    unit: "valable 1 an",
-    note: "Réservée aux licenciés",
+    name: "La part cotisation",
+    text: "Donne lieu à la délivrance d'un reçu « Cerfa » au titre des dons à certains organismes d'intérêt général — déductible de vos impôts.",
+  },
+];
+
+export const extras = [
+  {
+    name: "Caution badge d'accès",
+    price: "5 €",
+    unit: "adulte & enfant",
+    note: "Accès au club, aux courts, toilettes & douches",
   },
   {
-    name: "Invité d'un membre",
-    price: "8 €",
-    unit: "/ heure",
-    note: "Tennis, dans la limite de 3 venues",
+    name: "Remise Smash Haguenau",
+    price: "−15 %",
+    unit: "pour tout licencié",
+    note: "Sur tout le magasin, hors promotions et balles",
   },
+  {
+    name: "Raquettes de padel",
+    price: "Prêt",
+    unit: "nouveaux membres",
+    note: "À disposition pour découvrir le padel",
+  },
+];
+
+export const infosPratiques = [
+  "Le tarif annuel s'étend sur la saison tennistique, du 1er septembre au 31 août de l'année suivante.",
+  "Accès à l'ensemble des courts de tennis et de padel tous les jours de la semaine (sauf priorités : compétitions, entraînements, école de tennis, animations — voir règlement intérieur).",
+  "Adhésion FFT obligatoire : la licence sportive de l'année en cours est exigée, ainsi qu'un certificat médical pour les jeunes de moins de 18 ans.",
+  "Accès aux infrastructures par badge (caution 5 €). Les badges sont désactivés au 1er janvier pour les joueurs n'ayant pas régularisé le renouvellement de leur cotisation.",
+  "Paiement en ligne possible par Ten'up. Paiement exigé dès le premier jour pour les cours, avec possibilité d'étalement.",
+  "Les membres sont vivement invités à ne pas jouer avec des personnes n'étant pas membres du club — la solidarité associative s'impose.",
+  "Terrain de pétanque disponible pour tous les membres à jour de leur cotisation (voir règlement intérieur).",
+  "Toute l'infrastructure du club est sous vidéosurveillance. Accès au Club House uniquement pendant les heures de permanence (consultez le panneau d'affichage).",
+  "Un stock de balles est disponible à l'achat au Club House lors des permanences.",
+  "Pour les remises exceptionnelles, nous consulter pour plus de détails et explications.",
 ];
 
 export const tennisSchool = [
   {
-    name: "Mini-tennis",
-    detail: "5 – 7 ans · 1h / semaine",
+    name: "École de tennis",
+    detail: "5 à 17 ans · 30 séances de 1h",
     price: "120 €",
   },
   {
-    name: "École de tennis jeunes",
-    detail: "8 – 17 ans · 1h / semaine",
-    price: "160 €",
-  },
-  {
-    name: "Cours collectifs adultes",
-    detail: "1h / semaine · tous niveaux",
-    price: "180 €",
-  },
-  {
-    name: "Stages vacances",
-    detail: "Été & petites vacances · 5 demi-journées",
-    price: "90 €",
+    name: "Cours privés tennis & padel",
+    detail: "Jeunes et adultes · contactez le président",
+    price: "Sur demande",
   },
 ];
 
@@ -365,17 +421,6 @@ export const testimonials = [
   },
 ];
 
-export const sponsors = [
-  "Poterie du Vieux Four",
-  "Boulangerie Schneider",
-  "Menuiserie Weber & Fils",
-  "Restaurant Au Cerf d'Or",
-  "Électricité Klein",
-  "Garage de la Forêt",
-  "Optique Riedinger",
-  "Cave du Ried",
-];
-
 export type GalleryItem = {
   src: StaticImageData;
   alt: string;
@@ -422,33 +467,24 @@ export const gallery: GalleryItem[] = [
   },
 ];
 
-export const timeline = [
-  {
-    year: "1979",
-    title: "Naissance du club",
-    text: "Une bande de passionnés fonde le Tennis Club Soufflenheim, au cœur du pays des potiers. Les premières balles fusent rue de Koenigsbruck.",
-  },
-  {
-    year: "Années 90",
-    title: "Le court couvert",
-    text: "Le club s'équipe d'un court couvert : fini la trêve hivernale, on joue désormais toute l'année, quelle que soit la météo alsacienne.",
-  },
-  {
-    year: "2023",
-    title: "Le padel entre en piste",
-    text: "Le TCS devient TPCS : une piste de padel SLAMCOURT dernière génération sort de terre et attire une nouvelle génération de joueurs.",
-  },
-  {
-    year: "2025",
-    title: "Place au pickleball",
-    text: "Toujours en mouvement, le club lance des sessions découverte de pickleball, le sport de raquette qui monte, accessible à tous les âges.",
-  },
-  {
-    year: "Demain",
-    title: "L'extension padel",
-    text: "Une structure padel supplémentaire est à l'étude — la maquette 3D est prête. Créativité, flexibilité et gestion rigoureuse restent le cap du comité.",
-  },
-];
+/* L'histoire complète du club (chapitres + photos d'archives)
+   vit dans src/lib/histoire.ts */
+
+/* La galerie complète = photos récentes + toutes les photos d'archives
+   de la page histoire (sans doublons). Utilisée par la page /galerie ;
+   la page d'accueil garde l'aperçu `gallery` ci-dessus. */
+const archives: GalleryItem[] = histoireChapitres.flatMap((chapitre) =>
+  chapitre.photos
+    .filter((photo) => !gallery.some((item) => item.src === photo.src))
+    .map((photo) => ({
+      src: photo.src,
+      alt: photo.alt,
+      category: "Archives",
+      caption: `${chapitre.title} — ${chapitre.period}`,
+    }))
+);
+
+export const galleryComplete: GalleryItem[] = [...gallery, ...archives];
 
 export const committee = [
   {
@@ -458,22 +494,89 @@ export const committee = [
     icon: "crown",
   },
   {
-    role: "Secrétariat",
-    name: "L'équipe bénévole",
-    contact: "secretariat.tpcs@gmail.com",
-    icon: "pen",
+    role: "Vice Président",
+    name: "Stéphane Walkiewicz",
+    icon: "crown",
   },
   {
-    role: "Trésorerie",
-    name: "Gestion rigoureuse",
-    contact: "Comptes certifiés chaque saison",
+    role: "Vice Président",
+    name: "Patrick Lefèbvre",
+    icon: "crown",
+  },
+  {
+    role: "Vice Président",
+    name: "Georges Niebel",
+    icon: "crown",
+  },
+  {
+    role: "Trésorière",
+    name: "Hélène Niebel",
     icon: "coins",
   },
   {
-    role: "Animation & padel",
-    name: "Les bénévoles du club",
-    contact: "Tournois, soirées & découvertes",
+    role: "Trésorier adjoint",
+    name: "Jean-Claude Vitzikam",
+    icon: "coins",
+  },
+  {
+    role: "Secrétaire",
+    name: "Catherine Walkiewicz",
+    icon: "pen",
+  },
+  {
+    role: "Commission Sportive",
+    name: "Maxime Moreau",
+    icon: "trophy",
+  },
+  {
+    role: "Commission Sportive",
+    name: "Matthieu Schmitt",
+    icon: "trophy",
+  },
+  {
+    role: "Commission Sportive",
+    name: "Benjamin Matteï",
+    icon: "trophy",
+  },
+  {
+    role: "Commission Sportive",
+    name: "Raphaël Stein",
+    icon: "trophy",
+  },
+  {
+    role: "Commission Sportive",
+    name: "Frédéric Alves",
+    icon: "trophy",
+  },
+  {
+    role: "Commission Entretien",
+    name: "Christophe Issele",
+    icon: "wrench",
+  },
+  {
+    role: "Commission Entretien",
+    name: "Valentin Beck",
+    icon: "wrench",
+  },
+  {
+    role: "Commission Animation",
+    name: "Eric Kauffmann",
     icon: "spark",
+  },
+  {
+    role: "Commission Animation",
+    name: "Michael Keiflin",
+    icon: "spark",
+  },
+  {
+    role: "Assesseur",
+    name: "Quentin Brucker",
+    icon: "shield",
+  },
+  {
+    role: "Assesseur",
+    name: "François Cau",
+    icon: "shield",
   },
 ];
 

@@ -3,12 +3,19 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { hourlyRates, memberships, site, tennisSchool } from "@/lib/data";
+import {
+  cotisationParts,
+  extras,
+  infosPratiques,
+  memberships,
+  site,
+  tennisSchool,
+} from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Tarifs",
   description:
-    "Adhésions, location de la piste de padel, école de tennis : des formules simples et accessibles au Tennis Padel Club Soufflenheim.",
+    "Adhésions tennis, padel et combiné, école de tennis, conditions générales : les tarifs 2024/25 du Tennis Padel Club Soufflenheim.",
 };
 
 function Check() {
@@ -23,9 +30,9 @@ export default function TarifsPage() {
   return (
     <>
       <PageHero
-        kicker="Tarifs — saison 2026 / 2027"
+        kicker="Tarifs & conditions générales — 2024 / 25"
         title="Des formules simples, un club accessible"
-        text="Pas de frais cachés, pas d'usine à gaz : une adhésion annuelle, la licence FFT incluse, et le padel réservable à l'heure pour tous."
+        text="Une adhésion annuelle valable du 1er septembre au 31 août : tennis, padel ou les deux, licence FFT comprise, éclairage inclus. Choisissez la formule qui vous ressemble."
       />
 
       {/* Adhésions */}
@@ -35,12 +42,12 @@ export default function TarifsPage() {
             <SectionHeader
               kicker="Adhésions annuelles"
               title="Choisissez votre formule"
-              text="L'adhésion donne accès aux courts extérieurs et au court couvert selon planning, avec la licence FFT et son assurance incluses."
+              text="Chaque adhésion comprend la licence FFT et le droit de jeu. L'accès aux courts est possible tous les jours de la semaine, hors priorités du club."
             />
           </Reveal>
           <div className="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {memberships.map((m, i) => (
-              <Reveal key={m.name} delay={i * 100} className="h-full">
+              <Reveal key={m.name} delay={(i % 4) * 100} className="h-full">
                 <article
                   className={`card-lift relative flex h-full flex-col rounded-3xl p-8 ${
                     m.featured
@@ -50,7 +57,7 @@ export default function TarifsPage() {
                 >
                   {m.featured ? (
                     <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold-500 px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.14em] text-pine-950 shadow-lg">
-                      Le plus choisi
+                      Le plus complet
                     </span>
                   ) : null}
                   <h3
@@ -109,72 +116,66 @@ export default function TarifsPage() {
             ))}
           </div>
           <Reveal delay={150}>
-            <p className="mt-10 text-center text-sm text-pine-950/50">
-              Pass&rsquo;Sport, chèques vacances et facilités de paiement acceptés —
-              renseignez-vous au club.
+            <p className="mt-10 text-center text-sm font-semibold text-clay-500">
+              Un réajustement du tarif sera effectif à la fin de la construction
+              des pistes de padel couvertes.
+            </p>
+            <p className="mt-2 text-center text-sm text-pine-950/50">
+              Paiement en ligne possible par Ten&rsquo;up, avec possibilité
+              d&rsquo;étalement — renseignez-vous au club.
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Location horaire */}
+      {/* La cotisation en trois parts */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeader
-              kicker="À l'heure"
-              title="Padel & courts à la carte"
-              text="Licencié ou non, réservez en ligne et venez jouer. Paiement sécurisé directement sur la plateforme."
+              kicker="Transparence"
+              title="Votre cotisation, partagée en trois"
+              text="Chaque adhésion se décompose en trois parts distinctes — et l'une d'elles vous ouvre droit à un avantage fiscal."
             />
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {hourlyRates.map((rate, i) => (
-              <Reveal key={rate.name} delay={i * 100} className="h-full">
+          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+            {cotisationParts.map((part, i) => (
+              <Reveal key={part.name} delay={i * 100} className="h-full">
                 <div className="card-lift flex h-full flex-col rounded-3xl border border-pine-100 bg-cream-50 p-7">
-                  <h3 className="font-bold text-pine-950">{rate.name}</h3>
-                  <div className="mt-3 flex items-baseline gap-1.5">
-                    <span className="display text-4xl text-pine-950">{rate.price}</span>
-                    <span className="text-xs text-pine-950/50">{rate.unit}</span>
-                  </div>
-                  <p className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-clay-500">
-                    {rate.note}
-                  </p>
+                  <span className="display text-4xl text-gold-500">{i + 1}</span>
+                  <h3 className="mt-3 font-bold text-pine-950">{part.name}</h3>
+                  <p className="mt-2 text-sm text-pine-950/70">{part.text}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={150}>
-            <div className="mt-12 flex flex-wrap justify-center gap-4">
-              <a
-                href={site.links.tenup}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-gold"
-              >
-                Réserver sur Ten&rsquo;up
-              </a>
-              <a
-                href={site.links.anybuddy}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-pine"
-              >
-                Réserver sur Anybuddy
-              </a>
+            <div className="mx-auto mt-12 max-w-3xl rounded-3xl bg-pine-800 p-8 text-center text-white sm:p-10">
+              <p className="display text-3xl text-gold-400">
+                66 % de réduction d&rsquo;impôt
+              </p>
+              <p className="mt-3 text-sm text-white/80">
+                La part cotisation donne lieu à un reçu «&nbsp;Cerfa&nbsp;» au
+                titre des dons : vous pourrez enregistrer ce montant sur votre
+                déclaration d&rsquo;impôt sur les revenus 2024 en 2025, et
+                bénéficier d&rsquo;une réduction de 66&nbsp;% de la somme sur
+                votre impôt à payer (ex.&nbsp;: sur 100&nbsp;€, la déduction est
+                de 66&nbsp;€).
+              </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* École de tennis */}
+      {/* École de tennis & cours */}
       <section className="bg-pine-900 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeader
               tone="light"
-              kicker="École de tennis"
+              kicker="École & cours"
               title="Apprendre en s'amusant"
-              text="Du mini-tennis aux cours adultes, l'école du TPCS accueille tous les niveaux de septembre à juin, hors vacances scolaires."
+              text="L'école de tennis du TPCS accueille les jeunes de 5 à 17 ans, et des cours privés de tennis et de padel sont possibles pour tous."
             />
           </Reveal>
           <div className="mt-14 overflow-hidden rounded-3xl border border-white/10">
@@ -196,26 +197,78 @@ export default function TarifsPage() {
           </div>
           <Reveal delay={150}>
             <p className="mt-8 text-center text-sm text-white/50">
-              Séance d&rsquo;essai offerte en début de saison · matériel prêté pour
-              les plus jeunes.
+              Paiement exigé dès le premier jour pour les cours, avec
+              possibilité d&rsquo;étalement.
             </p>
           </Reveal>
         </div>
       </section>
 
+      {/* Bon à savoir */}
+      <section className="bg-cream-50 py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeader
+              kicker="Bon à savoir"
+              title="Les petits plus du club"
+              text="Badge d'accès, matériel prêté, remise chez notre partenaire : tout ce qui accompagne votre adhésion."
+            />
+          </Reveal>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {extras.map((extra, i) => (
+              <Reveal key={extra.name} delay={i * 100} className="h-full">
+                <div className="card-lift flex h-full flex-col rounded-3xl border border-pine-100 bg-white p-7">
+                  <h3 className="font-bold text-pine-950">{extra.name}</h3>
+                  <div className="mt-3 flex items-baseline gap-1.5">
+                    <span className="display text-4xl text-pine-950">{extra.price}</span>
+                    <span className="text-xs text-pine-950/50">{extra.unit}</span>
+                  </div>
+                  <p className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-clay-500">
+                    {extra.note}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={150}>
+            <div className="mt-14 rounded-3xl border border-pine-100 bg-white p-8 sm:p-10">
+              <h3 className="display text-2xl text-pine-950">
+                Conditions générales de l&rsquo;année
+              </h3>
+              <ul className="mt-6 grid gap-x-10 gap-y-4 text-sm text-pine-950/75 md:grid-cols-2">
+                {infosPratiques.map((info) => (
+                  <li key={info} className="flex items-start gap-2.5">
+                    <Check />
+                    {info}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="bg-cream-50 py-20">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <Reveal>
             <h2 className="display text-4xl text-pine-950 sm:text-5xl">
               Un doute sur la bonne formule ?
             </h2>
             <p className="mt-4 text-lg text-pine-950/65">
-              Appelez le club au{" "}
-              <a href="tel:+33388867908" className="font-bold text-clay-500 hover:underline">
-                {site.phoneClub}
+              Passez nous voir au Club House pendant les heures de permanence,
+              appelez le{" "}
+              <a href="tel:+33610146039" className="font-bold text-clay-500 hover:underline">
+                {site.phonePresident}
               </a>{" "}
-              ou écrivez-nous : on vous aiguille en deux minutes.
+              ou écrivez à{" "}
+              <a
+                href={`mailto:${site.emails.president}`}
+                className="font-bold text-clay-500 hover:underline"
+              >
+                {site.emails.president}
+              </a>
+              &nbsp;: on vous aiguille en deux minutes.
             </p>
             <div className="mt-8">
               <Link href="/contact" className="btn btn-pine">
