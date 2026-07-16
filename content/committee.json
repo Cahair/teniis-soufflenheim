@@ -3,91 +3,109 @@
     "role": "Président",
     "name": "Serge Moreau",
     "contact": "06 10 14 60 39",
-    "icon": "crown"
+    "icon": "crown",
+    "commissions": ["Commission Sponsoring"]
   },
   {
     "role": "Vice Président",
     "name": "Stéphane Walkiewicz",
-    "icon": "crown"
+    "icon": "crown",
+    "commissions": ["Commission Animation", "Commission Sponsoring"]
   },
   {
     "role": "Vice Président",
     "name": "Patrick Lefèbvre",
-    "icon": "crown"
+    "icon": "crown",
+    "commissions": ["Commission Entretien"]
   },
   {
     "role": "Vice Président",
     "name": "Georges Niebel",
-    "icon": "crown"
+    "icon": "crown",
+    "commissions": ["Commission Entretien"]
   },
   {
     "role": "Trésorière",
     "name": "Hélène Niebel",
-    "icon": "coins"
+    "icon": "coins",
+    "commissions": []
   },
   {
     "role": "Trésorier adjoint",
     "name": "Jean-Claude Vitzikam",
-    "icon": "coins"
+    "icon": "coins",
+    "commissions": ["Commission Entretien"]
   },
   {
     "role": "Secrétaire",
     "name": "Catherine Walkiewicz",
-    "icon": "pen"
-  },
-  {
-    "role": "Commission Sportive",
-    "name": "Maxime Moreau",
-    "icon": "trophy"
-  },
-  {
-    "role": "Commission Sportive",
-    "name": "Matthieu Schmitt",
-    "icon": "trophy"
-  },
-  {
-    "role": "Commission Sportive",
-    "name": "Benjamin Matteï",
-    "icon": "trophy"
-  },
-  {
-    "role": "Commission Sportive",
-    "name": "Raphaël Stein",
-    "icon": "trophy"
-  },
-  {
-    "role": "Commission Sportive",
-    "name": "Frédéric Alves",
-    "icon": "trophy"
-  },
-  {
-    "role": "Commission Entretien",
-    "name": "Christophe Issele",
-    "icon": "wrench"
-  },
-  {
-    "role": "Commission Entretien",
-    "name": "Valentin Beck",
-    "icon": "wrench"
-  },
-  {
-    "role": "Commission Animation",
-    "name": "Eric Kauffmann",
-    "icon": "spark"
-  },
-  {
-    "role": "Commission Animation",
-    "name": "Michael Keiflin",
-    "icon": "spark"
+    "icon": "pen",
+    "commissions": ["Commission Animation"]
   },
   {
     "role": "Assesseur",
     "name": "Quentin Brucker",
-    "icon": "shield"
+    "icon": "shield",
+    "commissions": []
   },
   {
     "role": "Assesseur",
     "name": "François Cau",
-    "icon": "shield"
+    "icon": "shield",
+    "commissions": []
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Maxime Moreau",
+    "icon": "trophy",
+    "commissions": ["Commission Sportive", "Commission Sponsoring"]
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Matthieu Schmitt",
+    "icon": "trophy",
+    "commissions": ["Commission Sportive"]
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Benjamin Matteï",
+    "icon": "trophy",
+    "commissions": ["Commission Sportive"]
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Raphaël Stein",
+    "icon": "trophy",
+    "commissions": ["Commission Sportive"]
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Frédéric Alves",
+    "icon": "trophy",
+    "commissions": ["Commission Sportive"]
+  },
+  {
+    "role": "Commission Entretien",
+    "name": "Christophe Issele",
+    "icon": "wrench",
+    "commissions": ["Commission Entretien", "Commission Animation"]
+  },
+  {
+    "role": "Commission Entretien",
+    "name": "Valentin Beck",
+    "icon": "wrench",
+    "commissions": ["Commission Entretien"]
+  },
+  {
+    "role": "Commission Animation",
+    "name": "Eric Kauffmann",
+    "icon": "spark",
+    "commissions": ["Commission Animation", "Commission Entretien"]
+  },
+  {
+    "role": "Commission Animation",
+    "name": "Michael Keiflin",
+    "icon": "spark",
+    "commissions": ["Commission Animation"]
   }
 ]

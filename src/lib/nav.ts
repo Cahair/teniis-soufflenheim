@@ -11,7 +11,14 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
   { label: "Accueil", href: "/" },
-  { label: "Le club", href: "/le-club" },
+  {
+    label: "Le club",
+    href: "/le-club",
+    children: [
+      { label: "Histoire & installations", href: "/le-club" },
+      { label: "Le comité", href: "/comite" },
+    ],
+  },
   {
     label: "S'inscrire",
     href: "/tarifs",

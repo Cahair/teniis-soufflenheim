@@ -120,7 +120,28 @@ export default function Footer({
           <p>
             © 2026 {site.name} — Tous droits réservés · Club fondé en 1979
           </p>
-          <p>Maquette de démonstration — contenus et tarifs indicatifs</p>
+          <p className="flex flex-wrap items-center justify-center gap-x-2">
+            <span>Maquette de démonstration — contenus et tarifs indicatifs</span>
+            <span aria-hidden="true">·</span>
+            <Link
+              href="/mentions-legales"
+              className="transition-colors hover:text-gold-300"
+            >
+              Mentions légales
+            </Link>
+            <span aria-hidden="true">·</span>
+            <span>
+              Site Web créé par{" "}
+              <a
+                href="https://romain-kantzer.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-gold-300"
+              >
+                RK.ai — romain-kantzer.com
+              </a>
+            </span>
+          </p>
         </div>
       </div>
     </footer>

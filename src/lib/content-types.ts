@@ -99,6 +99,8 @@ export type CommitteeMember = {
   name: string;
   contact?: string;
   icon: string; // crown | pen | coins | spark | trophy | wrench | shield
+  photo?: ImageRef; // à défaut, vignette avec initiales + icône
+  commissions?: string[]; // toutes les commissions où siège le membre
 };
 
 export type Facility = {

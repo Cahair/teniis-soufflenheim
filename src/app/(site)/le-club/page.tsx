@@ -23,45 +23,6 @@ export const metadata: Metadata = {
     "Depuis 1979, le Tennis Padel Club Soufflenheim fait vivre le sport de raquette au pays des potiers : histoire, comité, installations.",
 };
 
-const committeeIcons: Record<string, React.ReactNode> = {
-  crown: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m3 8 4 4 5-6 5 6 4-4v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z" />
-    </svg>
-  ),
-  pen: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
-    </svg>
-  ),
-  coins: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="8" cy="8" r="6" />
-      <path d="M18.1 9.9A6 6 0 1 1 9.9 18.1" />
-    </svg>
-  ),
-  spark: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 3v3m6.4-.4-2.2 2.2M21 12h-3m.4 6.4-2.2-2.2M12 18v3m-6.4-.4 2.2-2.2M3 12h3m-.4-6.4 2.2 2.2" />
-    </svg>
-  ),
-  trophy: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-    </svg>
-  ),
-  wrench: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  ),
-  shield: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-    </svg>
-  ),
-};
-
 export default async function LeClubPage() {
   const [site, committee, facilities, histoireChapitres, histoireInfos] =
     await Promise.all([
@@ -172,34 +133,23 @@ export default async function LeClubPage() {
         </div>
       </section>
 
-      {/* Comité */}
+      {/* Comité — présenté en détail sur sa page dédiée */}
       <section className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeader
               kicker="Le comité"
               title="Une équipe de bénévoles engagés"
-              text="Derrière chaque tournoi, chaque soirée et chaque court entretenu, il y a des mains bénévoles. Envie de rejoindre l'aventure ? Parlez-en au club house."
+              text={`Derrière chaque tournoi, chaque soirée et chaque court entretenu, il y a des mains bénévoles : ${committee.length} membres répartis entre le bureau et quatre commissions.`}
             />
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {committee.map((member, i) => (
-              <Reveal key={member.name} delay={(i % 4) * 100} className="h-full">
-                <div className="card-lift flex h-full flex-col items-center rounded-3xl border border-pine-100 bg-cream-50 p-8 text-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-pine-800 text-gold-400">
-                    {committeeIcons[member.icon]}
-                  </span>
-                  <h3 className="display mt-5 text-xl text-pine-950">{member.name}</h3>
-                  <p className="mt-1.5 text-sm font-semibold text-pine-950/75">
-                    {member.role}
-                  </p>
-                  {"contact" in member && member.contact ? (
-                    <p className="mt-2 text-xs text-pine-950/50">{member.contact}</p>
-                  ) : null}
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={100}>
+            <div className="mt-10 text-center">
+              <Link href="/comite" className="btn btn-pine">
+                Découvrir le comité
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
