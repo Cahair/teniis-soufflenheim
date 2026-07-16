@@ -1,10 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { logo } from "@/lib/images";
-import { navLinks, site } from "@/lib/data";
+import { navLinks } from "@/lib/nav";
+import { telHref } from "@/lib/format";
+import type { SiteSettings, Social } from "@/lib/content-types";
 import SocialLinks from "./SocialLinks";
 
-export default function Footer() {
+export default function Footer({
+  site,
+  socials,
+}: {
+  site: SiteSettings;
+  socials: Social[];
+}) {
   return (
     <footer className="bg-pine-950 text-white/70">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -20,7 +28,7 @@ export default function Footer() {
               1979. Un club de village, une ambiance de famille.
             </p>
             <div className="mt-6">
-              <SocialLinks />
+              <SocialLinks socials={socials} />
             </div>
           </div>
 
@@ -29,7 +37,7 @@ export default function Footer() {
               Navigation
             </h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {navLinks.map((link) => (
+              {navLinks.flatMap((link) => link.children ?? [link]).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -53,7 +61,7 @@ export default function Footer() {
                 {site.address.city}
               </li>
               <li>
-                <a href="tel:+33388867908" className="hover:text-gold-300">
+                <a href={telHref(site.phoneClub)} className="hover:text-gold-300">
                   {site.phoneClub}
                 </a>
               </li>

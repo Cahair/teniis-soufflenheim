@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { events, news } from "@/lib/data";
+import { getEvents, getNews } from "@/lib/content";
 
-export default function NewsAgenda() {
+export default async function NewsAgenda() {
+  const [news, events] = await Promise.all([getNews(), getEvents()]);
   return (
     <section className="bg-cream-50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -33,7 +34,7 @@ export default function NewsAgenda() {
                       src={item.image}
                       alt={item.title}
                       fill
-                      placeholder="blur"
+                      placeholder={item.image.blurDataURL ? "blur" : "empty"}
                       sizes="(max-width: 768px) 90vw, 30vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />

@@ -4,8 +4,10 @@ import CourtLines from "@/components/CourtLines";
 import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import { padelCourt, terrasseClub } from "@/lib/images";
+import { getSocials } from "@/lib/content";
 
-export default function Hero() {
+export default async function Hero() {
+  const socials = await getSocials();
   return (
     <section className="hero relative overflow-hidden bg-pine-950 pb-24 pt-28 sm:pt-36 lg:pt-40">
       {/* Photo de fond — mobile & tablette */}
@@ -36,11 +38,7 @@ export default function Hero() {
         {/* Colonne texte */}
         <div>
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-gold-300 backdrop-blur sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.18em]">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold-400" />
-              </span>
+            <span className="kicker text-[0.65rem] text-gold-400 sm:text-xs">
               Depuis 1979 · Soufflenheim, Alsace du Nord
             </span>
           </Reveal>
@@ -107,7 +105,7 @@ export default function Hero() {
                 Suivez-nous
               </span>
               <span className="h-px w-8 bg-white/15" />
-              <SocialLinks />
+              <SocialLinks socials={socials} />
             </div>
           </Reveal>
         </div>

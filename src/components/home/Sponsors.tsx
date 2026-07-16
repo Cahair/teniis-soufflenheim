@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { sponsors } from "@/lib/sponsors";
+import { getSponsors } from "@/lib/content";
 
-export default function Sponsors() {
+export default async function Sponsors() {
+  const sponsors = await getSponsors();
   const loop = [...sponsors, ...sponsors];
   return (
     <section className="overflow-hidden bg-white py-24">

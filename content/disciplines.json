@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Tennis",
+    "badge": "L'âme du club",
+    "image": {
+      "src": "/images/courts-exterieurs.webp",
+      "width": 1021,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRigBAABXRUJQVlA4TBsBAAAvB8ABAM1VICICHggACAIAAIB3PJkfeoBhbwAADAAAAAAAAAAAAADAAAAABoABY2HdOh4Y/L5zSwMAAHggQDmoAAAA579l3XYb0wAAAECKgSIAAAAAAAAAAAAAAAAAAAAABAAAAACAgv91r7bzQABsEAAAAM6ff3WR+DsAAAAAAACAAAAAAAAAAAAAAAAAAACdI0gQcYCo0laR1Echsj4r9clXQXdhNwBdGmIdn2TckCfkMUwIE5oyPnlx3dksfTt3rHqyu/6o2ea72tC1vQvBabLCGri55FCEUHFI8+BZPuSef3G8/+WK6r//IOchYDimN4tXzkdE32cTqUpoNsHwVm4m3wd1KZyqpAphwG+8vimGwWIHWArNURDRAA=="
+    },
+    "description": "Deux courts extérieurs et un court couvert pour jouer toute l'année, en loisir comme en compétition. École de tennis dès 5 ans, encadrement passionné.",
+    "features": [
+      "2 courts extérieurs + 1 court couvert",
+      "École de tennis dès 5 ans",
+      "Équipes engagées en championnat"
+    ],
+    "cta": {
+      "label": "Rejoindre l'école de tennis",
+      "href": "https://docs.google.com/forms/d/e/1FAIpQLSdwK46w1MOJwu8j38saJ6d-5iZOLfMvBG6KHmqHr0VKyQy4ww/viewform?usp=pp_url"
+    }
+  },
+  {
+    "name": "Padel",
+    "badge": "La sensation du moment",
+    "image": {
+      "src": "/images/padel-court.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4TPkAAAAvBcABAM1VICICHghADgIAAABrpc4/CEpAmQEMAAAAAAAAIAAAAAgAAAAAAAIAABIIgKGE4AsGqhYAAAAPBMAGAQAA4Pz3XW74VJhQhAAAAQAAAAAAAAAAAAAAAAAAAAAAAA4AAJAD3MPY+TwQABsEAACA86dVwQscAAAAAAAAHAAAAAAAAAAAAAAAAAAQgR8A4Pnx3Yp+hPST3C9yKOLR5bNRAdzXMb5bplPqJcqZbIGsVXUuMev14hy7w7hH9kz7betzt7tvc8CAvPNV3Ebvgm2COofsPTVzYOugUPzsp3Lw9wL6RQsp4TVEfaUIQMzn9D7gT+02HwEA"
+    },
+    "description": "Notre piste SLAMCOURT dernière génération vous attend. Facile à prendre en main, terriblement addictif : le padel se joue à 4 et se réserve en quelques clics.",
+    "features": [
+      "Piste panoramique dernière génération",
+      "Tutoriels vidéo officiels FFT",
+      "Projet d'extension en cours (maquette 3D)"
+    ],
+    "cta": {
+      "label": "Réserver une piste",
+      "href": "/#reservation"
+    }
+  },
+  {
+    "name": "Pickleball",
+    "badge": "Nouveau",
+    "image": {
+      "src": "/images/pickleball-jeunes.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4TOcAAAAvBcABAM1VICICHgiACQMAAACp5VXoQI4IDgAAAAAAAAAAAAAAIAAAQAD8AAAQACCAwPFz/AeLYwQAAOCBANswAAAAnH+StNM7HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwWOOBAKQwAAAAnP/f/4wAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtPWp/L5i0x/9TB+ySq8zgszSGVf3mf1z7hHoum7pj21hvdcMx4/vlZnlI799K3fzBEER+NCr+tmOX3bpQ5NUlCmRnwOOCWpRQXCJl0SBIFvFYOfilEA"
+    },
+    "description": "Le sport de raquette qui monte, proche du tennis de plage : accessible à tous les âges, convivial et immédiatement amusant. Venez découvrir, on vous prête le matériel !",
+    "features": [
+      "Initiation gratuite, matériel prêté",
+      "Idéal en famille, de 7 à 77 ans",
+      "Sessions découverte le week-end"
+    ],
+    "cta": {
+      "label": "Venir essayer gratuitement",
+      "href": "/contact"
+    }
+  }
+]

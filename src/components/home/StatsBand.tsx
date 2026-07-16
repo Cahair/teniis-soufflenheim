@@ -1,8 +1,9 @@
 import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
-import { stats } from "@/lib/data";
+import { getStats } from "@/lib/content";
 
-export default function StatsBand() {
+export default async function StatsBand() {
+  const stats = await getStats();
   return (
     <section id="stats" className="bg-gold-500">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">

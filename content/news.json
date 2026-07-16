@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "pickleball-decouverte",
+    "title": "Le pickleball débarque au TPCS !",
+    "date": "12 juin 2026",
+    "category": "Nouveauté",
+    "excerpt": "Proche du tennis de plage, ludique et accessible dès le plus jeune âge : le club vous invite à découvrir le pickleball lors de sessions d'initiation gratuites, matériel fourni.",
+    "image": {
+      "src": "/images/pickleball-jeunes.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4TOcAAAAvBcABAM1VICICHgiACQMAAACp5VXoQI4IDgAAAAAAAAAAAAAAIAAAQAD8AAAQACCAwPFz/AeLYwQAAOCBANswAAAAnH+StNM7HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwWOOBAKQwAAAAnP/f/4wAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtPWp/L5i0x/9TB+ySq8zgszSGVf3mf1z7hHoum7pj21hvdcMx4/vlZnlI799K3fzBEER+NCr+tmOX3bpQ5NUlCmRnwOOCWpRQXCJl0SBIFvFYOfilEA"
+    }
+  },
+  {
+    "slug": "padel-complet",
+    "title": "Padel : la piste affiche complet, pensez à réserver",
+    "date": "28 mai 2026",
+    "category": "Padel",
+    "excerpt": "Le succès ne se dément pas : les créneaux du soir partent en quelques heures. Réservez votre piste sur Ten'up ou Anybuddy pour ne pas rester au bord du grillage.",
+    "image": {
+      "src": "/images/padel-court.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4TPkAAAAvBcABAM1VICICHghADgIAAABrpc4/CEpAmQEMAAAAAAAAIAAAAAgAAAAAAAIAABIIgKGE4AsGqhYAAAAPBMAGAQAA4Pz3XW74VJhQhAAAAQAAAAAAAAAAAAAAAAAAAAAAAA4AAJAD3MPY+TwQABsEAACA86dVwQscAAAAAAAAHAAAAAAAAAAAAAAAAAAQgR8A4Pnx3Yp+hPST3C9yKOLR5bNRAdzXMb5bplPqJcqZbIGsVXUuMev14hy7w7hH9kz7betzt7tvc8CAvPNV3Ebvgm2COofsPTVzYOugUPzsp3Lw9wL6RQsp4TVEfaUIQMzn9D7gT+02HwEA"
+    }
+  },
+  {
+    "slug": "fete-du-club",
+    "title": "Fête du club : retour en images",
+    "date": "17 mai 2026",
+    "category": "Vie du club",
+    "excerpt": "Soleil, grillades, doubles endiablés et tournoi des familles : merci aux bénévoles et aux nombreux membres présents pour cette magnifique journée au bord des courts.",
+    "image": {
+      "src": "/images/fete-club.webp",
+      "width": 1360,
+      "height": 910,
+      "blurDataURL": "data:image/webp;base64,UklGRuwAAABXRUJQVlA4TOAAAAAvBwABAM1VICICHgiACQMAAIDeqxKCA4YTMAAAAAAAAAAAAAAAAAAcIPECACDgHAAABw5wCnFOXAIAAOCBAJgwAAAAnP/WQkBaUwQEHAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAACATds8EAATBgAAgPMvHAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAIDAgcdmWH1sNUmAIs8/83I5hAnDh2vEw176M9aj1/ffV545Ci/KKsQJz62bJ98bhw7HkCQWF7kNGIhKq5KNd7GSDV+t2r9mvbvO6Yq2rAeQAZpJAw=="
+    }
+  },
+  {
+    "slug": "inscriptions-ecole",
+    "title": "École de tennis : inscriptions 2026-2027 ouvertes",
+    "date": "2 mai 2026",
+    "category": "École de tennis",
+    "excerpt": "Mini-tennis dès 5 ans, groupes jeunes et cours adultes : les inscriptions pour la saison prochaine sont ouvertes. Places limitées, ne tardez pas !",
+    "image": {
+      "src": "/images/courts-exterieurs.webp",
+      "width": 1021,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRigBAABXRUJQVlA4TBsBAAAvB8ABAM1VICICHggACAIAAIB3PJkfeoBhbwAADAAAAAAAAAAAAADAAAAABoABY2HdOh4Y/L5zSwMAAHggQDmoAAAA579l3XYb0wAAAECKgSIAAAAAAAAAAAAAAAAAAAAABAAAAACAgv91r7bzQABsEAAAAM6ff3WR+DsAAAAAAACAAAAAAAAAAAAAAAAAAACdI0gQcYCo0laR1Echsj4r9clXQXdhNwBdGmIdn2TckCfkMUwIE5oyPnlx3dksfTt3rHqyu/6o2ea72tC1vQvBabLCGri55FCEUHFI8+BZPuSef3G8/+WK6r//IOchYDimN4tXzkdE32cTqUpoNsHwVm4m3wd1KZyqpAphwG+8vimGwWIHWArNURDRAA=="
+    }
+  },
+  {
+    "slug": "nouvelle-terrasse",
+    "title": "Une terrasse toute neuve au club house",
+    "date": "18 avril 2026",
+    "category": "Vie du club",
+    "excerpt": "Salons en palettes, voiles d'ombrage et fleurs : la nouvelle terrasse vous accueille pour la troisième mi-temps, avec vue directe sur la piste de padel.",
+    "image": {
+      "src": "/images/terrasse-club.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRv4AAABXRUJQVlA4TPEAAAAvBcABAM1VICICHgiADQIAAIAqgWY/AyE45JwLAOAAAAAAAAAHAAAAAAAAAAAAAA7wEwTwgkzqAnIAAAAPBOAIAQAA4Px3v/mNKegBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAELPStlgcCkMIAAABw/t/fWEsjADMAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQYICgxF99JKoJH3bS6y/b6skXLEhx0joSjnLtn6m+JsXNeLzpfMKLISpMSRGPGtz6w2wt5MXylu5VpW1d8/dCF/YvvsjFsQ2vz6lwqcT4H9jDZPxwn4JZHWU3pMQKAA=="
+    }
+  },
+  {
+    "slug": "projet-padel-3d",
+    "title": "Extension padel : découvrez la maquette 3D du projet",
+    "date": "5 avril 2026",
+    "category": "Projet",
+    "excerpt": "Le comité travaille sur une structure padel supplémentaire. Créativité, flexibilité et gestion rigoureuse : découvrez le projet en modèle 3D et les prochaines étapes.",
+    "image": {
+      "src": "/images/club-house.webp",
+      "width": 765,
+      "height": 1020,
+      "blurDataURL": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4TPoAAAAvBcABAM1VICICHgiADQIAAIB3PZAA3QGQAuQABACAAwAAAAAAAAAAAAB+wAEHABziQgj0A36DPyUHAADAAwEwYQAAADj/Na+5AwUEABziQAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgx1tTb7sHAmCDAAAAcP56e7lsPMURAADAAQAAAAAAAAAAAAAAAAAAgDjgcOAAACEBIlOPVD2ResLz9vEeymPa3jT0ZHfxHLfT8TJ+V3DVW6iuUBz7a1La4/z+W6ZJDS25ha+uA4DVaozXT2Utbe/wI8c5qWWGYlML3Eh5nIs32WsJvpuJ/pUHORKKCnCrPJGCQ4ca"
+    }
+  }
+]

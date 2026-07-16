@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import type { HistoireChapitre } from "@/lib/histoire";
+import type { HistoireChapitre } from "@/lib/content-types";
 
 /* ------------------------------------------------------------------ */
 /*  Frise chronologique de l'histoire du club : un chapitre par       */
@@ -62,7 +62,7 @@ function ChapterCarousel({
             <Image
               src={photo.src}
               alt={photo.alt}
-              placeholder="blur"
+              placeholder={photo.src.blurDataURL ? "blur" : "empty"}
               sizes="(max-width: 640px) 65vw, 340px"
               className="h-44 w-auto cursor-zoom-in object-cover transition-transform duration-500 group-hover:scale-105 sm:h-56"
             />

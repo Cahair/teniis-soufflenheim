@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { disciplines } from "@/lib/data";
+import { getDisciplines } from "@/lib/content";
 
-export default function Disciplines() {
+export default async function Disciplines() {
+  const disciplines = await getDisciplines();
   return (
     <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,7 +26,7 @@ export default function Disciplines() {
                     src={d.image}
                     alt={d.name}
                     fill
-                    placeholder="blur"
+                    placeholder={d.image.blurDataURL ? "blur" : "empty"}
                     sizes="(max-width: 1024px) 90vw, 30vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -50,6 +51,9 @@ export default function Disciplines() {
                   </ul>
                   <Link
                     href={d.cta.href}
+                    {...(d.cta.href.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="group/link mt-auto inline-flex items-center gap-2 pt-7 text-sm font-bold text-pine-800 transition-colors hover:text-clay-500"
                   >
                     {d.cta.label}

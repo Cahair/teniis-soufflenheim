@@ -2,9 +2,10 @@ import Link from "next/link";
 import Accordion from "@/components/Accordion";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { faqs } from "@/lib/data";
+import { getFaqs } from "@/lib/content";
 
-export default function FaqSection() {
+export default async function FaqSection() {
+  const faqs = await getFaqs();
   return (
     <section className="bg-cream-50 py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

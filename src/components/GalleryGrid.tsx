@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import type { GalleryItem } from "@/lib/data";
+import type { GalleryItem } from "@/lib/content-types";
 
 /* Nombre de photos affichées initialement et ajoutées à chaque
    clic sur « Afficher plus » — multiple de 2 et 3 pour remplir
@@ -101,7 +101,7 @@ export default function GalleryGrid({
             <Image
               src={item.src}
               alt={item.alt}
-              placeholder="blur"
+              placeholder={item.src.blurDataURL ? "blur" : "empty"}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="h-auto w-full transition-transform duration-500 group-hover:scale-105"
             />

@@ -2,9 +2,10 @@ import Link from "next/link";
 import GalleryGrid from "@/components/GalleryGrid";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { gallery } from "@/lib/data";
+import { getGallery } from "@/lib/content";
 
-export default function GalleryPreview() {
+export default async function GalleryPreview() {
+  const gallery = await getGallery();
   return (
     <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

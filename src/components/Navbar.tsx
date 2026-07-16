@@ -5,9 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoMark from "./LogoMark";
 import SocialLinks from "./SocialLinks";
-import { navLinks, site } from "@/lib/data";
+import { navLinks } from "@/lib/nav";
+import type { SiteSettings, Social } from "@/lib/content-types";
 
-export default function Navbar() {
+export default function Navbar({
+  site,
+  socials,
+}: {
+  site: SiteSettings;
+  socials: Social[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -44,22 +51,56 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
           {navLinks.map((link) => {
+            const hrefs = [
+              link.href,
+              ...(link.children?.map((c) => c.href) ?? []),
+            ];
             const active =
               link.href === "/"
                 ? pathname === "/"
-                : pathname.startsWith(link.href);
+                : hrefs.some((h) => pathname.startsWith(h));
+            const itemClass = `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              active
+                ? "bg-white/10 text-gold-300"
+                : "text-white/80 hover:bg-white/5 hover:text-white"
+            }`;
+            if (!link.children) {
+              return (
+                <Link key={link.href} href={link.href} className={itemClass}>
+                  {link.label}
+                </Link>
+              );
+            }
             return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-white/10 text-gold-300"
-                    : "text-white/80 hover:bg-white/5 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
+              <div key={link.href} className="group relative">
+                <Link
+                  href={link.href}
+                  className={`inline-flex items-center gap-1.5 ${itemClass}`}
+                >
+                  {link.label}
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </Link>
+                {/* pt-2 : pont invisible pour garder le survol entre le lien et le panneau */}
+                <div className="invisible absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  <div className="min-w-[13rem] rounded-2xl border border-white/10 bg-pine-950/95 p-2 shadow-xl shadow-pine-950/40 backdrop-blur-md">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                          pathname.startsWith(child.href)
+                            ? "bg-white/10 text-gold-300"
+                            : "text-white/80 hover:bg-white/5 hover:text-white"
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             );
           })}
           <Link href="/#reservation" className="btn btn-gold ml-3 !px-5 !py-2.5 text-sm">
@@ -101,19 +142,47 @@ export default function Navbar() {
           </button>
         </div>
         <nav className="flex flex-1 flex-col justify-center gap-2 px-8" aria-label="Navigation mobile">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              style={{ transitionDelay: `${i * 40}ms` }}
-              className={`display text-4xl text-white/90 transition-all duration-500 hover:text-gold-400 ${
-                open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link, i) => {
+            const revealClass = `transition-all duration-500 ${
+              open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            }`;
+            if (!link.children) {
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  style={{ transitionDelay: `${i * 40}ms` }}
+                  className={`display text-4xl text-white/90 hover:text-gold-400 ${revealClass}`}
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+            return (
+              <div
+                key={link.href}
+                style={{ transitionDelay: `${i * 40}ms` }}
+                className={revealClass}
+              >
+                <span className="display text-4xl text-white/40">
+                  {link.label}
+                </span>
+                <div className="mt-1 flex flex-col gap-1 border-l border-white/15 pl-5">
+                  {link.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      onClick={() => setOpen(false)}
+                      className="display text-2xl text-white/90 hover:text-gold-400"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
           <Link
             href="/#reservation"
             onClick={() => setOpen(false)}
@@ -124,7 +193,7 @@ export default function Navbar() {
         </nav>
         <div className="px-8 pb-10 text-sm text-white/50">
           <div className="mb-5">
-            <SocialLinks />
+            <SocialLinks socials={socials} />
           </div>
           <p>{site.address.street} — {site.address.city}</p>
           <p className="mt-1">{site.phoneClub}</p>

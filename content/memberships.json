@@ -1,0 +1,89 @@
+[
+  {
+    "name": "Tennis Adulte",
+    "price": "133 €",
+    "period": "/ an",
+    "features": [
+      "Licence FFT : 33 €",
+      "Droit de jeu & dons : 100 € (50 € + 50 €)",
+      "Accès aux courts extérieurs & couvert",
+      "Éclairage compris"
+    ]
+  },
+  {
+    "name": "Tennis Couple",
+    "price": "226 €",
+    "period": "/ an",
+    "features": [
+      "2 adhésions adultes",
+      "Licences FFT : 66 €",
+      "Droit de jeu & dons : 160 € (80 € + 80 €)",
+      "Accès aux courts extérieurs & couvert"
+    ]
+  },
+  {
+    "name": "Combiné Tennis + Padel",
+    "price": "163 €",
+    "period": "/ an",
+    "featured": true,
+    "features": [
+      "Licence multi-raquettes : 33 €",
+      "Droit de jeu & dons : 130 € (65 € + 65 €)",
+      "Tennis & padel tous les jours",
+      "Éclairage compris"
+    ]
+  },
+  {
+    "name": "Padel Adulte",
+    "price": "156 €",
+    "period": "/ an",
+    "features": [
+      "Licence FFT : 26 €",
+      "Droit de jeu & dons : 130 € (65 € + 65 €)",
+      "Accès à la piste de padel",
+      "Éclairage compris"
+    ]
+  },
+  {
+    "name": "Padel Couple",
+    "price": "260 €",
+    "period": "/ an",
+    "features": [
+      "2 adhésions adultes",
+      "Licences FFT : 52 €",
+      "Droit de jeu & dons : 208 € (104 € + 104 €)",
+      "Accès à la piste de padel"
+    ]
+  },
+  {
+    "name": "Padel non licencié au club",
+    "price": "180 €",
+    "period": "/ an",
+    "features": [
+      "Sans licence au club",
+      "Droit de jeu : 130 € + 50 €",
+      "Accès à la piste de padel"
+    ]
+  },
+  {
+    "name": "Jeunes 7 à -18 ans",
+    "price": "82 €",
+    "period": "/ an",
+    "features": [
+      "Tennis + padel multi-raquettes",
+      "Licence FFT : 23 €",
+      "Droit de jeu & dons : 60 € (30 € + 30 €)",
+      "Certificat médical obligatoire"
+    ]
+  },
+  {
+    "name": "Familles 2 ou 3 enfants",
+    "price": "− 16 €",
+    "period": "/ enfant / an",
+    "features": [
+      "Réduction sur la formule Jeunes",
+      "Enfants de 7 à -18 ans",
+      "Soit 66 € par enfant"
+    ]
+  }
+]

@@ -2,7 +2,7 @@
 
 Maquette de site vitrine pour le TPCS — Tennis, Padel & Pickleball à Soufflenheim, depuis 1979.
 
-Construit avec **Next.js 16** (App Router), **React 19** et **Tailwind CSS 4**. Aucune autre dépendance : animations, galerie lightbox, accordéon FAQ et compteurs sont faits maison.
+Construit avec **Next.js 16** (App Router), **React 19**, **Tailwind CSS 4** et **sharp** (photos). Tout le reste est fait maison : animations, galerie lightbox, accordéon FAQ, compteurs… et le mini-CMS intégré (`/admin`).
 
 ## Lancer le site
 
@@ -31,20 +31,51 @@ npm start
 | `/galerie` | Galerie photos filtrable avec visionneuse plein écran |
 | `/contact` | Coordonnées, formulaire (démo), carte, FAQ complète |
 
-## Modifier le contenu
+## Modifier le contenu — mini-CMS intégré
 
-**Tout le contenu du site** (textes, tarifs, actualités, événements, FAQ, témoignages, partenaires…) est centralisé dans un seul fichier :
+Le site embarque sa propre administration sur **`/admin`** (mot de passe
+partagé) : actualités, agenda, tarifs, galerie, histoire, comité, sponsors,
+FAQ, témoignages, coordonnées… tout est modifiable par les bénévoles du club,
+sans toucher au code. Voir le [guide d'utilisation](GUIDE-ADMIN.md).
 
-```
-src/lib/data.ts
-```
+Fonctionnement :
 
-Les photos se trouvent dans `public/images/` et sont référencées dans `src/lib/images.ts`.
+- Le contenu vit dans des fichiers JSON : seed versionné dans `content/`,
+  version modifiée dans `data/content/` (créée à la première modification).
+- Les photos envoyées via l'admin sont converties en WebP (avec miniature de
+  flou) dans `data/uploads/`, servies par la route `/uploads/[file]`.
+- Chaque enregistrement sauvegarde l'ancienne version dans `data/backups/`
+  (30 dernières par fichier) puis revalide le cache de tout le site :
+  les modifications sont en ligne en quelques secondes.
+- Les messages du formulaire de contact sont consultables dans
+  l'admin (« Messages reçus »).
 
-Les couleurs du club (vert sapin, jaune or, crème, terre battue) sont définies dans `src/app/globals.css`.
+Configuration (fichier `.env.local`, voir `.env.example`) :
+
+| Variable | Rôle |
+| --- | --- |
+| `ADMIN_PASSWORD` | mot de passe de l'administration |
+| `SESSION_SECRET` | clé de signature des sessions (hex aléatoire) |
+| `TPCS_DATA_DIR` | dossier persistant du contenu (défaut : `./data`) |
+
+Ce qui reste dans le code (volontairement hors CMS) : la navigation
+(`src/lib/nav.ts`), le règlement intérieur (`src/lib/reglement.ts`), les
+images décoratives (`src/lib/images.ts`) et les couleurs du club
+(`src/app/globals.css`).
+
+## Déploiement (Infomaniak, hébergement Node.js)
+
+1. Déployer le dépôt et installer : `npm install` (Node ≥ 20).
+2. Créer `.env.local` avec `ADMIN_PASSWORD`, `SESSION_SECRET` et, recommandé,
+   `TPCS_DATA_DIR` pointant vers un dossier **hors du dépôt** (ex.
+   `/srv/tpcs-data`) pour que le contenu survive aux redéploiements.
+3. `npm run build` puis démarrer avec `npm start -- --port $PORT`.
+4. À chaque mise à jour du code : re-build puis redémarrage — le contenu du
+   club (JSON + photos) est conservé dans `TPCS_DATA_DIR`.
 
 ## Notes
 
-- Formulaire de contact : démonstration visuelle, aucun envoi réel (à brancher sur un service d'e-mail lors de la mise en production).
 - Tarifs, événements et articles : contenus **indicatifs** créés pour la maquette, à valider avec le club.
 - Réservations : liens réels vers Ten'up (licenciés) et Anybuddy (non-licenciés).
+- Le formulaire de contact enregistre les messages dans l'admin ; l'envoi
+  d'une notification e-mail pourra être branché plus tard (SMTP Infomaniak).

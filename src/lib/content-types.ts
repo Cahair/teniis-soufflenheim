@@ -1,0 +1,133 @@
+/* ------------------------------------------------------------------ */
+/*  Types du contenu éditable via l'administration (/admin).          */
+/*  Chaque type correspond à un fichier JSON dans data/content/       */
+/*  (seed versionné dans content/).                                   */
+/* ------------------------------------------------------------------ */
+
+/* Compatible structurellement avec StaticImageData : un ImageRef
+   peut être passé tel quel à <Image src={...}> */
+export type ImageRef = {
+  src: string;
+  width: number;
+  height: number;
+  blurDataURL?: string;
+};
+
+export type SiteSettings = {
+  name: string;
+  shortName: string;
+  baseline: string;
+  address: { street: string; city: string; region: string };
+  phoneClub: string;
+  phonePresident: string;
+  president: string;
+  motPresident: string;
+  emails: { president: string; secretariat: string };
+  links: {
+    inscription: string;
+    tenup: string;
+    anybuddy: string;
+    fftPadel: string;
+    itineraire: string;
+  };
+};
+
+export type Social = {
+  label: string;
+  href: string;
+  icon: string; // clé dans socialIconPaths (facebook, instagram, youtube, tiktok, globe…)
+};
+
+export type Stat = { value: number; suffix: string; label: string };
+
+export type Discipline = {
+  name: string;
+  badge: string;
+  image: ImageRef;
+  description: string;
+  features: string[];
+  cta: { label: string; href: string };
+};
+
+export type NewsItem = {
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  excerpt: string;
+  image: ImageRef;
+};
+
+export type ClubEvent = {
+  day: string;
+  month: string;
+  title: string;
+  meta: string;
+};
+
+export type PriceCard = {
+  name: string;
+  price: string;
+  period: string;
+  featured?: boolean;
+  features: string[];
+};
+
+export type CotisationPart = { name: string; text: string };
+
+export type Extra = { name: string; price: string; unit: string; note: string };
+
+export type TennisCourse = { name: string; detail: string; price: string };
+
+export type InfosPratiques = { items: string[] };
+
+export type Faq = { q: string; a: string };
+
+export type Testimonial = { quote: string; name: string; role: string };
+
+export type GalleryItem = {
+  src: ImageRef;
+  alt: string;
+  category: string;
+  caption: string;
+};
+
+export type Sponsor = { name: string; logo: ImageRef; detail?: string };
+
+export type CommitteeMember = {
+  role: string;
+  name: string;
+  contact?: string;
+  icon: string; // crown | pen | coins | spark | trophy | wrench | shield
+};
+
+export type Facility = {
+  title: string;
+  detail: string;
+  tag: string;
+  image: ImageRef;
+};
+
+export type HistoirePhoto = { src: ImageRef; alt: string };
+
+export type HistoireChapitre = {
+  period: string;
+  title: string;
+  paragraphs: string[];
+  photos: HistoirePhoto[];
+};
+
+export type HistoireInfos = {
+  remerciements: string;
+  membresComite: string[];
+  educateurs: string[];
+};
+
+export type ContactMessage = {
+  id: string;
+  date: string; // ISO
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};

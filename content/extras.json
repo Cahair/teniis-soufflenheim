@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Caution badge d'accès",
+    "price": "5 €",
+    "unit": "adulte & enfant",
+    "note": "Accès au club, aux courts, toilettes & douches"
+  },
+  {
+    "name": "Remise Smash Haguenau",
+    "price": "−15 %",
+    "unit": "pour tout licencié",
+    "note": "Sur tout le magasin, hors promotions et balles"
+  },
+  {
+    "name": "Raquettes de padel",
+    "price": "Prêt",
+    "unit": "nouveaux membres",
+    "note": "À disposition pour découvrir le padel"
+  }
+]

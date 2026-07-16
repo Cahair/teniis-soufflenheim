@@ -1,6 +1,6 @@
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { testimonials } from "@/lib/data";
+import { getTestimonials } from "@/lib/content";
 
 function Stars() {
   return (
@@ -14,7 +14,8 @@ function Stars() {
   );
 }
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const testimonials = await getTestimonials();
   return (
     <section className="bg-cream-50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

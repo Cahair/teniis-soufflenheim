@@ -1,9 +1,11 @@
 import CourtLines from "@/components/CourtLines";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { site } from "@/lib/data";
+import { getSettings } from "@/lib/content";
+import { telHref } from "@/lib/format";
+import type { SiteSettings } from "@/lib/content-types";
 
-const platforms = [
+const platforms = (site: SiteSettings) => [
   {
     initial: "T",
     name: "Ten'up",
@@ -36,7 +38,8 @@ const platforms = [
   },
 ];
 
-export default function ReservationBand() {
+export default async function ReservationBand() {
+  const site = await getSettings();
   return (
     <section id="reservation" className="relative scroll-mt-24 overflow-hidden bg-pine-900 py-24">
       <div
@@ -59,7 +62,7 @@ export default function ReservationBand() {
         </Reveal>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-2">
-          {platforms.map((p, i) => (
+          {platforms(site).map((p, i) => (
             <Reveal key={p.name} delay={i * 150} className="h-full">
               <article className="card-lift flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm sm:p-10">
                 <div className="flex items-center gap-4">
@@ -111,7 +114,7 @@ export default function ReservationBand() {
         <Reveal delay={200}>
           <p className="mt-10 text-center text-sm text-white/50">
             Besoin d&rsquo;aide pour votre première réservation ? Appelez le club au{" "}
-            <a href="tel:+33388867908" className="font-semibold text-gold-300 hover:underline">
+            <a href={telHref(site.phoneClub)} className="font-semibold text-gold-300 hover:underline">
               {site.phoneClub}
             </a>
             .

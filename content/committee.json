@@ -1,0 +1,93 @@
+[
+  {
+    "role": "Président",
+    "name": "Serge Moreau",
+    "contact": "06 10 14 60 39",
+    "icon": "crown"
+  },
+  {
+    "role": "Vice Président",
+    "name": "Stéphane Walkiewicz",
+    "icon": "crown"
+  },
+  {
+    "role": "Vice Président",
+    "name": "Patrick Lefèbvre",
+    "icon": "crown"
+  },
+  {
+    "role": "Vice Président",
+    "name": "Georges Niebel",
+    "icon": "crown"
+  },
+  {
+    "role": "Trésorière",
+    "name": "Hélène Niebel",
+    "icon": "coins"
+  },
+  {
+    "role": "Trésorier adjoint",
+    "name": "Jean-Claude Vitzikam",
+    "icon": "coins"
+  },
+  {
+    "role": "Secrétaire",
+    "name": "Catherine Walkiewicz",
+    "icon": "pen"
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Maxime Moreau",
+    "icon": "trophy"
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Matthieu Schmitt",
+    "icon": "trophy"
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Benjamin Matteï",
+    "icon": "trophy"
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Raphaël Stein",
+    "icon": "trophy"
+  },
+  {
+    "role": "Commission Sportive",
+    "name": "Frédéric Alves",
+    "icon": "trophy"
+  },
+  {
+    "role": "Commission Entretien",
+    "name": "Christophe Issele",
+    "icon": "wrench"
+  },
+  {
+    "role": "Commission Entretien",
+    "name": "Valentin Beck",
+    "icon": "wrench"
+  },
+  {
+    "role": "Commission Animation",
+    "name": "Eric Kauffmann",
+    "icon": "spark"
+  },
+  {
+    "role": "Commission Animation",
+    "name": "Michael Keiflin",
+    "icon": "spark"
+  },
+  {
+    "role": "Assesseur",
+    "name": "Quentin Brucker",
+    "icon": "shield"
+  },
+  {
+    "role": "Assesseur",
+    "name": "François Cau",
+    "icon": "shield"
+  }
+]
