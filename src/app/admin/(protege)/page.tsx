@@ -1,8 +1,29 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
-import { sectionGroups, sections } from "@/lib/admin/registry";
+import { getSection, siteMap } from "@/lib/admin/registry";
 import { readJson } from "@/lib/storage";
 import { getMessages } from "@/lib/content";
+
+/* Sommaire de l'administration : le site page par page, chaque bloc
+   dans son ordre d'affichage réel. Les blocs grisés sont volontairement
+   figés (mise en page sensible, gérée dans le code). */
+
+function Chevron() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-pine-950/30 transition-transform group-hover:translate-x-0.5 group-hover:text-clay-500" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  );
+}
+
+function Lock() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="11" width="14" height="9" rx="2" />
+      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </svg>
+  );
+}
 
 export default async function AdminDashboard() {
   await requireAdmin();
@@ -10,66 +31,91 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="display text-3xl text-pine-950">Bienvenue dans l&rsquo;administration</h1>
+      <h1 className="display text-3xl text-pine-950">Sommaire du site</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-pine-950/60">
-        Choisissez un contenu à modifier : chaque changement est visible sur le
-        site en quelques secondes. Une copie de sauvegarde est conservée à
-        chaque modification.
+        Le site, page par page, dans l&rsquo;ordre d&rsquo;affichage. Cliquez sur un
+        bloc pour le modifier : le site est à jour en quelques secondes, et
+        chaque modification est sauvegardée automatiquement.
       </p>
 
-      <div className="mt-8">
-        <Link
-          href="/admin/messages"
-          className="flex items-center justify-between rounded-3xl border border-pine-100 bg-white p-6 transition-shadow hover:shadow-lg hover:shadow-pine-950/5"
-        >
-          <div>
-            <h2 className="font-bold text-pine-950">Messages reçus</h2>
-            <p className="mt-1 text-sm text-pine-950/55">
-              Les demandes envoyées via le formulaire de contact.
-            </p>
-          </div>
-          <span className="display rounded-2xl bg-pine-800 px-4 py-2 text-2xl text-gold-400">
-            {messages.length}
-          </span>
-        </Link>
-      </div>
+      <Link
+        href="/admin/messages"
+        className="group mt-8 flex items-center justify-between rounded-3xl bg-pine-800 p-6 text-white transition-shadow hover:shadow-xl hover:shadow-pine-800/25"
+      >
+        <div>
+          <h2 className="display text-xl">Messages reçus</h2>
+          <p className="mt-1 text-sm text-white/60">
+            Les demandes envoyées via le formulaire de contact.
+          </p>
+        </div>
+        <span className={`display rounded-2xl px-4 py-2 text-2xl ${messages.length ? "bg-gold-500 text-pine-950" : "bg-white/10 text-white/60"}`}>
+          {messages.length}
+        </span>
+      </Link>
 
-      {sectionGroups.map((group) => (
-        <section key={group} className="mt-10">
-          <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-pine-950/40">
-            {group}
-          </h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {sections
-              .filter((s) => s.group === group)
-              .map((s) => {
+      <div className="mt-10 grid gap-8 xl:grid-cols-2">
+        {siteMap.map(({ page, href, entries }) => (
+          <section key={page} className="min-w-0">
+            <div className="flex items-baseline justify-between gap-3 px-1">
+              <h2 className="display text-xl text-pine-950">{page}</h2>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 text-xs font-semibold text-pine-800/70 hover:text-clay-500"
+              >
+                voir la page ↗
+              </a>
+            </div>
+            <ul className="mt-3 overflow-hidden rounded-3xl border border-pine-100 bg-white">
+              {entries.map((entry, i) => {
+                const border = i > 0 ? "border-t border-pine-100/70" : "";
+                if (entry.fixed) {
+                  return (
+                    <li key={`fixe-${i}`} className={`flex items-center gap-2.5 px-5 py-3 text-sm text-pine-950/35 ${border}`}>
+                      <Lock />
+                      <span>
+                        {entry.fixed}
+                        <span className="ml-2 text-xs">· bloc fixe</span>
+                      </span>
+                    </li>
+                  );
+                }
+                const section = getSection(entry.slug!);
                 const count =
-                  s.kind === "collection"
-                    ? readJson<unknown[]>(s.file).length
+                  section.kind === "collection"
+                    ? readJson<unknown[]>(section.file).length
                     : null;
                 return (
-                  <Link
-                    key={s.slug}
-                    href={`/admin/${s.slug}`}
-                    className="rounded-3xl border border-pine-100 bg-white p-6 transition-shadow hover:shadow-lg hover:shadow-pine-950/5"
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-bold text-pine-950">{s.title}</h3>
-                      {count !== null ? (
-                        <span className="rounded-full bg-cream-50 px-2.5 py-1 text-xs font-bold text-pine-800">
-                          {count}
+                  <li key={`${entry.slug}-${i}`} className={border}>
+                    <Link
+                      href={`/admin/${section.slug}`}
+                      className="group flex items-center gap-3 px-5 py-3 transition-colors hover:bg-cream-50"
+                    >
+                      <span className="min-w-0 flex-1">
+                        <span className="flex items-center gap-2 text-sm font-semibold text-pine-950">
+                          {section.title}
+                          {count !== null ? (
+                            <span className="rounded-full bg-cream-50 px-2 py-0.5 text-[0.65rem] font-bold text-pine-800 group-hover:bg-white">
+                              {count}
+                            </span>
+                          ) : null}
                         </span>
-                      ) : null}
-                    </div>
-                    <p className="mt-1.5 text-sm leading-relaxed text-pine-950/55">
-                      {s.description}
-                    </p>
-                  </Link>
+                        {entry.note ? (
+                          <span className="mt-0.5 block truncate text-xs text-pine-950/45">
+                            {entry.note}
+                          </span>
+                        ) : null}
+                      </span>
+                      <Chevron />
+                    </Link>
+                  </li>
                 );
               })}
-          </div>
-        </section>
-      ))}
+            </ul>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

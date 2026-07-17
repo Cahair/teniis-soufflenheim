@@ -90,7 +90,7 @@ export default function Navbar({
                         key={child.href}
                         href={child.href}
                         className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
-                          pathname.startsWith(child.href)
+                          (child.href === "/" ? pathname === "/" : pathname.startsWith(child.href))
                             ? "bg-white/10 text-gold-300"
                             : "text-white/80 hover:bg-white/5 hover:text-white"
                         }`}

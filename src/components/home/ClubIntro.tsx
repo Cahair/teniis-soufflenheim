@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { feteClub, terrasseClub } from "@/lib/images";
+import { getHomeIntro } from "@/lib/content";
 
-const points = [
-  "École de tennis dès 5 ans, encadrement passionné",
-  "Court couvert pour jouer toute l'année",
-  "Club house de 150 m² avec cuisine et terrasse",
-  "Pétanque, espace vert et parking gratuit sur place",
-];
-
-export default function ClubIntro() {
+export default async function ClubIntro() {
+  const { paragraph, points } = await getHomeIntro();
   return (
     <section className="overflow-hidden bg-cream-50 py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -55,10 +50,7 @@ export default function ClubIntro() {
           </Reveal>
           <Reveal delay={100}>
             <p className="mt-6 text-lg leading-relaxed text-pine-950/65">
-              Fondé en 1979 au cœur du pays des potiers, le Tennis Padel Club
-              Soufflenheim cultive une recette simple : du sport pour tous, de
-              la convivialité à chaque échange, et une équipe de bénévoles qui
-              fait vivre le club saison après saison.
+              {paragraph}
             </p>
           </Reveal>
           <Reveal delay={200}>

@@ -7,7 +7,7 @@ import { getEvents, getNews } from "@/lib/content";
 export default async function NewsAgenda() {
   const [news, events] = await Promise.all([getNews(), getEvents()]);
   return (
-    <section className="bg-cream-50 py-24">
+    <section id="actualites" className="scroll-mt-24 bg-cream-50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -74,6 +74,15 @@ export default async function NewsAgenda() {
                 <h3 className="display mt-3 text-3xl text-white">
                   Prochains rendez-vous
                 </h3>
+                <Link
+                  href="/calendrier"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-gold-400 transition-colors hover:text-gold-300"
+                >
+                  Voir tout le calendrier
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14m0 0-6-6m6 6-6 6" />
+                  </svg>
+                </Link>
               </div>
               <div className="grid flex-1 gap-4 sm:grid-cols-2">
                 {events.map((event) => (

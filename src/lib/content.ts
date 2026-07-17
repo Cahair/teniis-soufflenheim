@@ -1,6 +1,9 @@
 import { readJson } from "./storage";
 import type {
   ClubEvent,
+  CtaBandContent,
+  HomeIntro,
+  ReservationInfo,
   CommitteeMember,
   ContactMessage,
   CotisationPart,
@@ -101,6 +104,18 @@ export async function getHistoireChapitres(): Promise<HistoireChapitre[]> {
 
 export async function getHistoireInfos(): Promise<HistoireInfos> {
   return readJson("histoire-infos");
+}
+
+export async function getHomeIntro(): Promise<HomeIntro> {
+  return readJson("home-intro");
+}
+
+export async function getReservation(): Promise<ReservationInfo> {
+  return readJson("reservation");
+}
+
+export async function getCtaBand(): Promise<CtaBandContent> {
+  return readJson("cta-band");
 }
 
 export async function getMessages(): Promise<ContactMessage[]> {

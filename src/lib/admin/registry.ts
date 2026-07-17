@@ -30,7 +30,6 @@ export type Section = {
   title: string;
   description: string;
   kind: "collection" | "singleton";
-  group: string;
   itemName: string; // « une actualité », pour les boutons
   titlePath?: string; // champ affiché comme titre dans la liste
   subtitlePath?: string;
@@ -55,7 +54,6 @@ export const sections: Section[] = [
     title: "Actualités",
     description: "Les articles affichés sur la page d'accueil et la page Actualités.",
     kind: "collection",
-    group: "Vie du club",
     itemName: "une actualité",
     titlePath: "title",
     subtitlePath: "date",
@@ -72,9 +70,8 @@ export const sections: Section[] = [
     slug: "agenda",
     file: "events",
     title: "Agenda",
-    description: "Les prochains rendez-vous du club (accueil + page Actualités).",
+    description: "Les prochains rendez-vous du club (accueil + page Calendrier).",
     kind: "collection",
-    group: "Vie du club",
     itemName: "un événement",
     titlePath: "title",
     subtitlePath: "meta",
@@ -91,7 +88,6 @@ export const sections: Section[] = [
     title: "Galerie",
     description: "Les photos mises en avant (accueil + page Galerie). Les archives de la page Histoire s'ajoutent automatiquement à la galerie complète.",
     kind: "collection",
-    group: "Vie du club",
     itemName: "une photo",
     titlePath: "caption",
     subtitlePath: "category",
@@ -110,7 +106,6 @@ export const sections: Section[] = [
     title: "Adhésions",
     description: "Les formules d'adhésion annuelles de la page Tarifs.",
     kind: "collection",
-    group: "Tarifs & inscriptions",
     itemName: "une formule",
     titlePath: "name",
     subtitlePath: "price",
@@ -128,7 +123,6 @@ export const sections: Section[] = [
     title: "Cotisation en 3 parts",
     description: "Le bloc « Votre cotisation, partagée en trois » de la page Tarifs.",
     kind: "collection",
-    group: "Tarifs & inscriptions",
     itemName: "une part",
     titlePath: "name",
     fields: [
@@ -142,7 +136,6 @@ export const sections: Section[] = [
     title: "École & cours",
     description: "Les lignes du tableau « École & cours » de la page Tarifs.",
     kind: "collection",
-    group: "Tarifs & inscriptions",
     itemName: "un cours",
     titlePath: "name",
     subtitlePath: "price",
@@ -158,7 +151,6 @@ export const sections: Section[] = [
     title: "Les petits plus",
     description: "Le bloc « Bon à savoir » de la page Tarifs (badge, remises, prêt de matériel).",
     kind: "collection",
-    group: "Tarifs & inscriptions",
     itemName: "un élément",
     titlePath: "name",
     subtitlePath: "price",
@@ -175,7 +167,6 @@ export const sections: Section[] = [
     title: "Conditions générales",
     description: "La liste « Conditions générales de l'année » de la page Tarifs.",
     kind: "singleton",
-    group: "Tarifs & inscriptions",
     itemName: "les conditions",
     fields: [
       { path: "items", label: "Conditions (une par ligne)", type: "lines", rows: 14 },
@@ -189,7 +180,6 @@ export const sections: Section[] = [
     title: "Histoire du club",
     description: "La frise chronologique de la page Le club : un chapitre par époque, avec ses photos d'archives.",
     kind: "collection",
-    group: "Le club",
     itemName: "un chapitre",
     titlePath: "title",
     subtitlePath: "period",
@@ -206,7 +196,6 @@ export const sections: Section[] = [
     title: "Remerciements & bénévoles",
     description: "Le texte de remerciements et les listes de bénévoles historiques de la page Le club.",
     kind: "singleton",
-    group: "Le club",
     itemName: "les remerciements",
     fields: [
       { path: "remerciements", label: "Texte de remerciements", type: "textarea", rows: 5 },
@@ -220,7 +209,6 @@ export const sections: Section[] = [
     title: "Le comité",
     description: "Les membres du comité actuel, affichés sur la page Le comité.",
     kind: "collection",
-    group: "Le club",
     itemName: "un membre",
     titlePath: "name",
     subtitlePath: "role",
@@ -239,7 +227,6 @@ export const sections: Section[] = [
     title: "Installations",
     description: "Les équipements du club présentés sur la page Le club.",
     kind: "collection",
-    group: "Le club",
     itemName: "une installation",
     titlePath: "title",
     subtitlePath: "tag",
@@ -256,7 +243,6 @@ export const sections: Section[] = [
     title: "Disciplines",
     description: "Les trois sports présentés sur la page d'accueil (tennis, padel, pickleball).",
     kind: "collection",
-    group: "Le club",
     itemName: "une discipline",
     titlePath: "name",
     subtitlePath: "badge",
@@ -276,7 +262,6 @@ export const sections: Section[] = [
     title: "Chiffres clés",
     description: "Le bandeau doré de chiffres sur la page d'accueil.",
     kind: "collection",
-    group: "Le club",
     itemName: "un chiffre",
     titlePath: "label",
     fields: [
@@ -293,7 +278,6 @@ export const sections: Section[] = [
     title: "Sponsors",
     description: "Les partenaires affichés sur l'accueil (bandeau défilant) et la page Sponsors.",
     kind: "collection",
-    group: "Partenaires & divers",
     itemName: "un sponsor",
     titlePath: "name",
     subtitlePath: "detail",
@@ -309,7 +293,6 @@ export const sections: Section[] = [
     title: "Témoignages",
     description: "Les avis de membres affichés sur la page d'accueil.",
     kind: "collection",
-    group: "Partenaires & divers",
     itemName: "un témoignage",
     titlePath: "name",
     subtitlePath: "role",
@@ -325,7 +308,6 @@ export const sections: Section[] = [
     title: "FAQ",
     description: "Les questions-réponses (5 premières sur l'accueil, toutes sur la page Contact).",
     kind: "collection",
-    group: "Partenaires & divers",
     itemName: "une question",
     titlePath: "q",
     fields: [
@@ -339,7 +321,6 @@ export const sections: Section[] = [
     title: "Réseaux sociaux",
     description: "Les liens affichés dans le pied de page, le menu mobile et la page Contact.",
     kind: "collection",
-    group: "Partenaires & divers",
     itemName: "un réseau",
     titlePath: "label",
     subtitlePath: "href",
@@ -355,7 +336,6 @@ export const sections: Section[] = [
     title: "Coordonnées & liens",
     description: "Les informations générales du club : adresse, téléphones, e-mails, liens de réservation et mot du président.",
     kind: "singleton",
-    group: "Partenaires & divers",
     itemName: "les coordonnées",
     fields: [
       { path: "name", label: "Nom du club", type: "text", required: true },
@@ -377,13 +357,165 @@ export const sections: Section[] = [
       { path: "links.itineraire", label: "Lien itinéraire (Google Maps)", type: "text", required: true },
     ],
   },
+  {
+    slug: "presentation",
+    file: "home-intro",
+    title: "Présentation du club (accueil)",
+    description: "Le bloc « Un club de village, une ambiance de famille » : paragraphe d'introduction et points forts. Le titre et les photos restent fixes.",
+    kind: "singleton",
+    itemName: "la présentation",
+    fields: [
+      { path: "paragraph", label: "Paragraphe d'introduction", type: "textarea", rows: 5, required: true },
+      { path: "points", label: "Points forts (un par ligne)", type: "lines", rows: 5, help: "4 lignes recommandées pour l'équilibre de la mise en page." },
+    ],
+  },
+  {
+    slug: "reservation",
+    file: "reservation",
+    title: "Réservation en ligne",
+    description: "Les deux cartes Ten'up et Anybuddy du bloc « Votre court en 2 minutes ». Les liens se règlent dans Coordonnées & liens.",
+    kind: "singleton",
+    itemName: "la réservation",
+    fields: [
+      { path: "tenup.tag", label: "Ten'up — public visé", type: "text", required: true, help: "Exemple : Licenciés FFT" },
+      { path: "tenup.description", label: "Ten'up — description", type: "textarea", rows: 3, required: true },
+      { path: "tenup.steps", label: "Ten'up — étapes (une par ligne)", type: "lines", rows: 3 },
+      { path: "tenup.cta", label: "Ten'up — texte du bouton", type: "text", required: true },
+      { path: "anybuddy.tag", label: "Anybuddy — public visé", type: "text", required: true },
+      { path: "anybuddy.description", label: "Anybuddy — description", type: "textarea", rows: 3, required: true },
+      { path: "anybuddy.steps", label: "Anybuddy — étapes (une par ligne)", type: "lines", rows: 3 },
+      { path: "anybuddy.cta", label: "Anybuddy — texte du bouton", type: "text", required: true },
+    ],
+  },
+  {
+    slug: "bandeau-final",
+    file: "cta-band",
+    title: "Bandeau « Prêt à jouer ? »",
+    description: "Le bandeau doré de fin de page (accueil et page Le club) : titre et texte. Les boutons restent fixes.",
+    kind: "singleton",
+    itemName: "le bandeau",
+    fields: [
+      { path: "title", label: "Titre", type: "text", required: true },
+      { path: "text", label: "Texte", type: "textarea", rows: 3, required: true },
+    ],
+  },
 ];
 
-export const sectionGroups = [
-  "Vie du club",
-  "Tarifs & inscriptions",
-  "Le club",
-  "Partenaires & divers",
+/* ------------------------------------------------------------------ */
+/*  Le plan du site pour le sommaire de l'admin : chaque page du      */
+/*  site, avec ses blocs dans l'ordre d'affichage. Les blocs `slug`   */
+/*  pointent vers une section modifiable ; les blocs `fixed` sont     */
+/*  volontairement gérés dans le code (mise en page sensible).        */
+/* ------------------------------------------------------------------ */
+
+export type SiteMapEntry = {
+  slug?: string; // section modifiable
+  fixed?: string; // bloc figé (affiché grisé)
+  note?: string; // précision affichée sous le nom
+};
+
+export type SiteMapPage = {
+  page: string;
+  href: string; // page correspondante du site public
+  entries: SiteMapEntry[];
+};
+
+export const siteMap: SiteMapPage[] = [
+  {
+    page: "Page d'accueil",
+    href: "/",
+    entries: [
+      { fixed: "Grand visuel d'ouverture (hero)" },
+      { slug: "chiffres-cles" },
+      { slug: "presentation" },
+      { slug: "disciplines" },
+      { slug: "reservation" },
+      { slug: "actualites", note: "aussi sur la page Actualités" },
+      { slug: "agenda", note: "aussi sur la page Calendrier" },
+      { slug: "galerie", note: "aperçu — galerie complète sur sa page" },
+      { slug: "temoignages" },
+      { slug: "sponsors", note: "bandeau défilant — aussi sur la page Sponsors" },
+      { slug: "faq", note: "les 5 premières questions" },
+      { slug: "bandeau-final" },
+    ],
+  },
+  {
+    page: "Le club",
+    href: "/le-club",
+    entries: [
+      { slug: "histoire" },
+      { slug: "histoire-benevoles" },
+      { fixed: "Bannière historique (photo souvenir)" },
+      { slug: "coordonnees", note: "pour le mot du président" },
+      { slug: "comite" },
+      { slug: "installations" },
+      { slug: "bandeau-final" },
+    ],
+  },
+  {
+    page: "Tarifs",
+    href: "/tarifs",
+    entries: [
+      { slug: "adhesions" },
+      { slug: "cotisation" },
+      { slug: "ecole-de-tennis" },
+      { slug: "bons-plans" },
+      { slug: "infos-pratiques" },
+    ],
+  },
+  {
+    page: "Actualités",
+    href: "/actualites",
+    entries: [
+      { slug: "actualites", note: "le 1er de la liste est « À la une »" },
+    ],
+  },
+  {
+    page: "Calendrier",
+    href: "/calendrier",
+    entries: [{ slug: "agenda" }],
+  },
+  {
+    page: "Galerie",
+    href: "/galerie",
+    entries: [
+      { slug: "galerie" },
+      { slug: "histoire", note: "les photos d'archives des chapitres" },
+    ],
+  },
+  {
+    page: "Calendrier",
+    href: "/calendrier",
+    entries: [{ slug: "agenda" }],
+  },
+  {
+    page: "Comité",
+    href: "/comite",
+    entries: [{ slug: "comite" }],
+  },
+  {
+    page: "Sponsors",
+    href: "/sponsors",
+    entries: [{ slug: "sponsors" }],
+  },
+  {
+    page: "Contact",
+    href: "/contact",
+    entries: [
+      { slug: "coordonnees" },
+      { slug: "reseaux-sociaux" },
+      { slug: "faq", note: "FAQ complète" },
+      { fixed: "Formulaire — les envois arrivent dans Messages reçus" },
+    ],
+  },
+  {
+    page: "Partout sur le site",
+    href: "/",
+    entries: [
+      { slug: "coordonnees", note: "pied de page, téléphones, liens, mentions légales" },
+      { slug: "reseaux-sociaux", note: "pied de page et menu mobile" },
+    ],
+  },
 ];
 
 export function getSection(slug: string): Section {

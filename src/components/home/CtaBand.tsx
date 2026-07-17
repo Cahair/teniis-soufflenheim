@@ -1,8 +1,10 @@
 import Link from "next/link";
 import CourtLines from "@/components/CourtLines";
 import Reveal from "@/components/Reveal";
+import { getCtaBand } from "@/lib/content";
 
-export default function CtaBand() {
+export default async function CtaBand() {
+  const { title, text } = await getCtaBand();
   return (
     <section className="relative overflow-hidden bg-gold-500 py-20">
       <CourtLines className="absolute -right-32 -top-24 h-[26rem] w-auto rotate-12 text-pine-950/10" />
@@ -10,11 +12,10 @@ export default function CtaBand() {
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <Reveal>
           <h2 className="display text-5xl text-pine-950 sm:text-6xl">
-            Prêt à jouer ?
+            {title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-pine-950/70">
-            Réservez votre court en ligne ou passez simplement nous voir au club
-            — le café est souvent offert, les conseils toujours.
+            {text}
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <Link href="/#reservation" className="btn btn-pine">

@@ -7,7 +7,7 @@ import { getFaqs } from "@/lib/content";
 export default async function FaqSection() {
   const faqs = await getFaqs();
   return (
-    <section className="bg-cream-50 py-24">
+    <section id="faq" className="scroll-mt-24 bg-cream-50 py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

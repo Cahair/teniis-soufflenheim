@@ -7,7 +7,7 @@ import { getDisciplines } from "@/lib/content";
 export default async function Disciplines() {
   const disciplines = await getDisciplines();
   return (
-    <section className="bg-white py-24">
+    <section id="disciplines" className="scroll-mt-24 bg-white py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

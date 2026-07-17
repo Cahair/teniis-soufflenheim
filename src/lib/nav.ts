@@ -10,7 +10,19 @@ export type NavLink = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Accueil", href: "/" },
+  {
+    label: "Accueil",
+    href: "/",
+    children: [
+      { label: "Haut de page", href: "/" },
+      { label: "Nouveau : le padel", href: "/#nouveau-padel" },
+      { label: "Nos disciplines", href: "/#disciplines" },
+      { label: "Réserver un court", href: "/#reservation" },
+      { label: "Actualités & agenda", href: "/#actualites" },
+      { label: "Galerie", href: "/#galerie" },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  },
   {
     label: "Le club",
     href: "/le-club",
@@ -28,6 +40,7 @@ export const navLinks: NavLink[] = [
     ],
   },
   { label: "Actualités", href: "/actualites" },
+  { label: "Calendrier", href: "/calendrier" },
   { label: "Galerie", href: "/galerie" },
   { label: "Sponsors", href: "/sponsors" },
   { label: "Contact", href: "/contact" },

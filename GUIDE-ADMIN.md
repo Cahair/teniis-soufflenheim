@@ -8,8 +8,11 @@ Aucune connaissance technique n'est nécessaire.
 1. Ouvrez **votresite.fr/admin** dans votre navigateur.
 2. Saisissez le mot de passe du club (demandez-le au président ou au
    secrétariat).
-3. Vous arrivez sur le tableau de bord : chaque carte correspond à un
-   contenu du site.
+3. Vous arrivez sur le **Sommaire du site** : chaque page du site y est
+   listée avec ses blocs, dans l'ordre où ils s'affichent. Cliquez sur un
+   bloc pour le modifier. Les blocs grisés avec un cadenas (comme le grand
+   visuel d'ouverture) sont volontairement fixes : ils garantissent la
+   mise en page — contactez le webmaster pour les changer.
 
 Pensez à **vous déconnecter** (bouton en bas du menu) si vous utilisez un
 ordinateur partagé.

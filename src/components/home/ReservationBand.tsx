@@ -1,45 +1,29 @@
 import CourtLines from "@/components/CourtLines";
 import Reveal from "@/components/Reveal";
 import SectionHeader from "@/components/SectionHeader";
-import { getSettings } from "@/lib/content";
+import { getReservation, getSettings } from "@/lib/content";
 import { telHref } from "@/lib/format";
-import type { SiteSettings } from "@/lib/content-types";
+import type { ReservationInfo, SiteSettings } from "@/lib/content-types";
 
-const platforms = (site: SiteSettings) => [
+const platforms = (site: SiteSettings, reservation: ReservationInfo) => [
   {
     initial: "T",
     name: "Ten'up",
-    tag: "Licenciés FFT",
-    description:
-      "La plateforme officielle de la Fédération Française de Tennis, pour les membres du club.",
-    steps: [
-      "Créez votre compte Ten'up (gratuit)",
-      "Choisissez votre court et votre créneau",
-      "Validez — votre réservation est confirmée",
-    ],
+    ...reservation.tenup,
     href: site.links.tenup,
-    cta: "Réserver sur Ten'up",
     gold: true,
   },
   {
     initial: "A",
     name: "Anybuddy",
-    tag: "Sans licence · accès ponctuel",
-    description:
-      "Pas encore licencié ? Réservez la piste de padel à l'heure, en quelques clics, paiement en ligne sécurisé.",
-    steps: [
-      "Téléchargez l'application Anybuddy",
-      "Sélectionnez le TPC Soufflenheim",
-      "Payez en ligne et venez jouer !",
-    ],
+    ...reservation.anybuddy,
     href: site.links.anybuddy,
-    cta: "Réserver sur Anybuddy",
     gold: false,
   },
 ];
 
 export default async function ReservationBand() {
-  const site = await getSettings();
+  const [site, reservation] = await Promise.all([getSettings(), getReservation()]);
   return (
     <section id="reservation" className="relative scroll-mt-24 overflow-hidden bg-pine-900 py-24">
       <div
@@ -62,7 +46,7 @@ export default async function ReservationBand() {
         </Reveal>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-2">
-          {platforms(site).map((p, i) => (
+          {platforms(site, reservation).map((p, i) => (
             <Reveal key={p.name} delay={i * 150} className="h-full">
               <article className="card-lift flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.06] p-8 backdrop-blur-sm sm:p-10">
                 <div className="flex items-center gap-4">

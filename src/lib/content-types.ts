@@ -125,6 +125,31 @@ export type HistoireInfos = {
   educateurs: string[];
 };
 
+/* Bloc « Un club de village… » de la page d'accueil (le titre et les
+   photos du collage restent gérés dans le code). */
+export type HomeIntro = {
+  paragraph: string;
+  points: string[];
+};
+
+export type ReservationPlatform = {
+  tag: string;
+  description: string;
+  steps: string[];
+  cta: string;
+};
+
+export type ReservationInfo = {
+  tenup: ReservationPlatform;
+  anybuddy: ReservationPlatform;
+};
+
+/* Bandeau doré « Prêt à jouer ? » (accueil + page Le club). */
+export type CtaBandContent = {
+  title: string;
+  text: string;
+};
+
 export type ContactMessage = {
   id: string;
   date: string; // ISO
