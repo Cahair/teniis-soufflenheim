@@ -230,21 +230,25 @@ export default function Navbar({
               </div>
             );
           })}
+          </div>
+        </nav>
+        {/* Pied du menu hors de la zone défilante : le CTA reste
+            visible quelle que soit la hauteur d'écran */}
+        <div className="px-8 pb-6 pt-2 text-sm text-white/50">
           <Link
             href="/#reservation"
             onClick={closeMenu}
-            className="btn btn-gold mt-6 self-start"
+            className="btn btn-gold w-full"
           >
             Réserver un court
           </Link>
-          </div>
-        </nav>
-        <div className="px-8 pb-10 text-sm text-white/50">
-          <div className="mb-5">
+          <div className="mt-5 flex items-center justify-between gap-4">
             <SocialLinks socials={socials} />
+            <div className="text-right">
+              <p>{site.address.city}</p>
+              <p className="mt-0.5">{site.phoneClub}</p>
+            </div>
           </div>
-          <p>{site.address.street} — {site.address.city}</p>
-          <p className="mt-1">{site.phoneClub}</p>
         </div>
     </div>
     </>
