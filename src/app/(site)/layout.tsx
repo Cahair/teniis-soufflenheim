@@ -12,7 +12,11 @@ export default async function SiteLayout({
   return (
     <>
       <Navbar site={site} socials={socials} />
-      <main className="flex-1">{children}</main>
+      {/* overflow-x-clip : les Reveal gauche/droite encore masqués (translate-x)
+          élargiraient sinon le document — sur mobile, une page plus large que
+          l'écran détache le header position:fixed du viewport visuel. Posé ici
+          et non sur <body>, dont l'overflow serait propagé au viewport. */}
+      <main className="flex-1 overflow-x-clip">{children}</main>
       <Footer site={site} socials={socials} />
     </>
   );
