@@ -17,6 +17,7 @@ export default function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -33,9 +34,18 @@ export default function Navbar({
     };
   }, [open]);
 
-  useEffect(() => {
+  const closeMenu = () => {
     setOpen(false);
-  }, [pathname]);
+    setOpenSection(null);
+  };
+
+  /* Fermeture sur changement de page (navigation retour/avant incluse),
+     par ajustement d'état pendant le rendu plutôt que dans un effet. */
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    closeMenu();
+  }
 
   return (
     <>
@@ -129,10 +139,10 @@ export default function Navbar({
       }`}
     >
         <div className="flex h-20 items-center justify-between px-4 sm:px-6">
-          <LogoMark onNavigate={() => setOpen(false)} />
+          <LogoMark onNavigate={closeMenu} />
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            onClick={closeMenu}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white"
             aria-label="Fermer le menu"
           >
@@ -141,7 +151,12 @@ export default function Navbar({
             </svg>
           </button>
         </div>
-        <nav className="flex flex-1 flex-col justify-center gap-2 px-8" aria-label="Navigation mobile">
+        {/* overflow-y-auto : le menu doit pouvoir défiler, le scroll du
+            body étant verrouillé tant qu'il est ouvert. Le centrage se
+            fait sur un wrapper min-h-full (et non justify-center sur le
+            conteneur défilant, qui rendrait le haut inatteignable). */}
+        <nav className="flex-1 overflow-y-auto px-8" aria-label="Navigation mobile">
+          <div className="flex min-h-full flex-col justify-center gap-2 py-6">
           {navLinks.map((link, i) => {
             const revealClass = `transition-all duration-500 ${
               open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
@@ -151,45 +166,78 @@ export default function Navbar({
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   style={{ transitionDelay: `${i * 40}ms` }}
-                  className={`display text-4xl text-white/90 hover:text-gold-400 ${revealClass}`}
+                  className={`display py-1 text-3xl text-white/90 hover:text-gold-400 ${revealClass}`}
                 >
                   {link.label}
                 </Link>
               );
             }
+            const expanded = openSection === link.href;
             return (
               <div
                 key={link.href}
                 style={{ transitionDelay: `${i * 40}ms` }}
                 className={revealClass}
               >
-                <span className="display text-4xl text-white/40">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenSection(expanded ? null : link.href)
+                  }
+                  aria-expanded={expanded}
+                  className={`display flex w-full items-center justify-between py-1 text-left text-3xl transition-colors ${
+                    expanded ? "text-gold-400" : "text-white/90"
+                  }`}
+                >
                   {link.label}
-                </span>
-                <div className="mt-1 flex flex-col gap-1 border-l border-white/15 pl-5">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      onClick={() => setOpen(false)}
-                      className="display text-2xl text-white/90 hover:text-gold-400"
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
+                  <svg
+                    viewBox="0 0 24 24"
+                    className={`h-6 w-6 shrink-0 transition-transform duration-300 ${
+                      expanded ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <div
+                  className={`grid transition-[grid-template-rows] duration-300 ${
+                    expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="mb-2 mt-1 flex flex-col border-l border-white/15 pl-5">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={closeMenu}
+                          tabIndex={expanded ? undefined : -1}
+                          className="display py-1.5 text-xl text-white/80 hover:text-gold-400"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
           <Link
             href="/#reservation"
-            onClick={() => setOpen(false)}
-            className="btn btn-gold mt-8 self-start"
+            onClick={closeMenu}
+            className="btn btn-gold mt-6 self-start"
           >
             Réserver un court
           </Link>
+          </div>
         </nav>
         <div className="px-8 pb-10 text-sm text-white/50">
           <div className="mb-5">
